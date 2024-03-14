@@ -1,18 +1,9 @@
 import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({
-  lastName: {
+  name: {
     type: String,
     required: true,
-    trim: true,
-  },
-  firstName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  middleName: {
-    type: String,
     trim: true,
   },
   year: {
