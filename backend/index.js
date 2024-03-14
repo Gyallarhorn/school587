@@ -1,0 +1,37 @@
+import express from 'express';
+import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
+import path from 'path';
+
+import connectDB from './config/db.js';
+// import { initEcomonics, initUniversities, initUsers } from './mockData/initiate.js';
+// import createFolder from './utils/createFolder.js';
+
+// Configuration
+dotenv.config();
+connectDB();
+
+const dirname = path.resolve();
+const UPLOADS_FOLDER = 'uploads';
+const UPLOADS_PATH = path.resolve(dirname, UPLOADS_FOLDER);
+
+// Mock data and uploads folder
+
+// initUniversities();
+// createFolder(UPLOADS_PATH);
+// initUsers();
+// initEcomonics();
+
+const app = express();
+
+// Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(`/${UPLOADS_FOLDER}`, express.static(UPLOADS_PATH));
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}`);
+});
