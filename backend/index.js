@@ -2,8 +2,12 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import cors from 'cors';
 
 import connectDB from './config/db.js';
+import universityRoutes from './routes/universityRoutes.js';
+import activitityRoutes from './routes/activityRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 // import { initEcomonics, initUniversities, initUsers } from './mockData/initiate.js';
 // import createFolder from './utils/createFolder.js';
 
@@ -26,11 +30,17 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(`/${UPLOADS_FOLDER}`, express.static(UPLOADS_PATH));
 
 const PORT = process.env.PORT || 3000;
+
+// Routes
+app.use('/api/v1/universities', universityRoutes);
+app.use('/api/v1/activities', activitityRoutes);
+app.use('/api/v1/users', userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
