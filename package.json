@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "backend": "nodemon backend/index.js"
+    "backend": "nodemon backend/index.js",
+    "frontend": "cd frontend && npm run dev",
+    "fullstack": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "keywords": [],
   "author": "Gyallarhorn",
