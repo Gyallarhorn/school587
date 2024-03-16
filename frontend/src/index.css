@@ -1,69 +1,101 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+/* Fonts */
+@font-face {
+  font-family: 'Coolvetica Rg';
+  font-style: normal;
   font-weight: 400;
-  line-height: 1.5;
-  color: rgb(255 255 255 / 87%);
-  color-scheme: light dark;
-  background-color: #242424;
+  src: url('../fonts/CoolveticaRg-Regular.woff2') format('woff2'),
+    url('../fonts/CoolveticaRg-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF UI Display';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/SFUIDisplay-Medium.woff2') format('woff2'),
+    url('../fonts/SFUIDisplay-Medium.woff') format('woff');
+  font-display: swap;
+}
+
+
+
+/* @font-face {
+  font-family: 'SF UI Display';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../fonts/SFUIDisplay-Regular.woff2') format('woff2'),
+      url('../fonts/SFUIDisplay-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF UI Display';
+  font-style: normal;
+  font-weight: bold;
+  src: url('../fonts/SFUIDisplay-Bold.woff2') format('woff2'),
+      url('../fonts/SFUIDisplay-Bold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF UI Display';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/SFUIDisplay-Semibold.woff2') format('woff2'),
+      url('../fonts/SFUIDisplay-Semibold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF UI Display';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/SFUIDisplay-Medium.woff2') format('woff2'),
+      url('../fonts/SFUIDisplay-Medium.woff') format('woff');
+  font-display: swap;
+} */
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+:root {
+  --background: #FCFCFC;
+  --primary-text-color: #212126;
+
+
+
   font-synthesis: none;
   text-rendering: optimizelegibility;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-
-  &:hover {
-    color: #535bf2;
-  }
+html {
+  height: 100%;
 }
 
 body {
-  display: flex;
-  place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100%;
   margin: 0;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  padding: 0.6em 1.2em;
-  font-family: inherit;
-  font-size: 1em;
+  font-family: 'SF UI Display', sans-serif;
+  font-size: clamp(12px, 2.5vw, 16px);
+  font-style: normal;
   font-weight: 500;
-  cursor: pointer;
-  background-color: #1a1a1a;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  transition: border-color 0.25s;
-
-  &:hover {
-    border-color: #646cff;
-  }
-
-  &:focus,
-  &:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #fff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+  line-height: 1.25;
+  color: var(--primary-text-color);
+  background-color: var(--background);
 }
