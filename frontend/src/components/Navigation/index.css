@@ -66,6 +66,10 @@
   .login-icon {
     width: 36px;
     height: 36px;
+
+    & .icon {
+      stroke-width: 1.5;
+    }
   }
 }
 

@@ -4,15 +4,10 @@ import LoginIcon from '../../assets/login.svg?react';
 import { NavLink, Link } from "react-router-dom";
 
 import './index.css';
-import { toast } from 'react-toastify';
 
 
 const Navigation = () => {
   const { adminInfo } = useSelector((state) => state.auth);
-
-  const notify = () => {
-    toast.error('Пользователи не найдены');
-  };
 
   return (
     <header className='header'>
@@ -24,7 +19,7 @@ const Navigation = () => {
           {adminInfo && <NavLink className='header-link' to='/admin-panel' >Панель</NavLink>}
           <NavLink className='header-link' to='/register'>Регистрация</NavLink>
         </div>
-        <button onClick={notify} className={`header-link-icon ${adminInfo ? 'header-link-admin' : ''}`} aria-label="Вход для администратора">
+        <button className={`header-link-icon ${adminInfo ? 'header-link-admin' : ''}`} aria-label="Вход для администратора">
           <LoginIcon className='login-icon' />
         </button>
       </nav>

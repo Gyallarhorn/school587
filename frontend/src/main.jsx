@@ -4,8 +4,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
-
-console.log(import.meta.env.VITE_BASE_URL);
+import Home from './pages/Home/Home.jsx';
 
 // const test = {
 //   name: 'Hi',
@@ -17,7 +16,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
 
     <Route path='/' element={<App />}>
-      {/* <Route path='/' index={true} element={/>}/> */}
+      <Route path='/' index={true} element={<Home />} />
     </Route>,
   ),
 );

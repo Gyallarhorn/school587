@@ -1,0 +1,63 @@
+.select {
+  position: relative;
+  border: 1px solid var(--select-border);
+  border-radius: 10px;
+}
+
+.select-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  cursor: pointer;
+}
+
+.select-label {
+  font-size: 12px;
+  color: var(--input-text-color);
+}
+
+@media (width >=768px) {
+  .select {
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+  }
+
+  .select-wrapper {
+    display: grid;
+    flex-grow: 1;
+    grid-template-columns: 1fr min-content;
+    column-gap: 5px;
+    height: 20px;
+    padding: 15px 30px;
+    overflow: hidden;
+  }
+
+  .select-label {
+    max-height: 20px;
+    overflow: hidden;
+    font-size: 14px;
+  }
+}
+
+@media (width >=1280px) {
+  .select {
+    border-radius: 20px;
+  }
+
+  .select-wrapper {
+    height: 20px;
+    padding: 25px 30px;
+  }
+
+  .arrow {
+    width: 25px;
+    height: 8px;
+  }
+
+  .select-label {
+    max-height: 20px;
+    font-size: 16px;
+  }
+}
