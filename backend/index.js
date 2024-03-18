@@ -17,7 +17,7 @@ connectDB();
 
 const dirname = path.resolve();
 const UPLOADS_FOLDER = 'uploads';
-const UPLOADS_PATH = path.resolve(dirname, UPLOADS_FOLDER);
+const UPLOADS_PATH = path.join(dirname, UPLOADS_FOLDER);
 
 // Mock data and uploads folder
 
@@ -33,14 +33,15 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(`/${UPLOADS_FOLDER}`, express.static(UPLOADS_PATH));
-
-const PORT = process.env.PORT || 3000;
 
 // Routes
 app.use('/api/v1/universities', universityRoutes);
 app.use('/api/v1/activities', activitityRoutes);
 app.use('/api/v1/users', userRoutes);
+
+app.use(`/${UPLOADS_FOLDER}`, express.static(UPLOADS_PATH));
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);

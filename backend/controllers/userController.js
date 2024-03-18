@@ -39,6 +39,14 @@ const getUsers = async (req, res) => {
       });
     }
 
+    pipeline.push({
+      $match: {
+        isPermitted: true,
+        isChecked: true,
+        // $expr: { $gt: [{ $size: '$photo' }, 0] },
+      },
+    });
+
     const countPipeline = [...pipeline, { $count: 'totalUsers' }];
 
     pipeline.push({ $sort: { createdAt: -1 } });

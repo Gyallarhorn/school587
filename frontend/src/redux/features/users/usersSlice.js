@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import setFalseFields from "../../../utils/setFalseFields";
 
 const initialState = ({
-  users: [],
+  data: [],
   filter: {
     query: '',
     university: false,
@@ -24,7 +24,7 @@ const usersSlice = createSlice({
   initialState,
   reducers: {
     setUsers: (state, action) => {
-      state.users = action.payload;
+      state.data = action.payload;
     },
     setUsersFilter: (state, action) => {
       if (action.payload.university && Object.prototype.hasOwnProperty.call(action.payload, 'universityValue')) {

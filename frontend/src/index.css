@@ -26,6 +26,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'SF UI Display';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/SFUIDisplay-Bold.woff2') format('woff2'),
+    url('../fonts/SFUIDisplay-Bold.woff') format('woff');
+  font-display: swap;
+}
+
 
 
 /* @font-face {
@@ -36,16 +45,6 @@
       url('../fonts/SFUIDisplay-Regular.woff') format('woff');
   font-display: swap;
 }
-
-@font-face {
-  font-family: 'SF UI Display';
-  font-style: normal;
-  font-weight: bold;
-  src: url('../fonts/SFUIDisplay-Bold.woff2') format('woff2'),
-      url('../fonts/SFUIDisplay-Bold.woff') format('woff');
-  font-display: swap;
-}
-
 */
 
 
@@ -71,12 +70,15 @@ button {
 
 :root {
   --background: #FCFCFC;
+  --opacity-background: rgb(247 247 247 / 70%);
   --primary-text-color: #212126;
+  --opacity-primary-color: rgb(33 33 38 / 70%);
   --border-color: #BEAB9A;
   --input-background-color: rgb(227 224 221 / 50%);
   --input-text-color: #575757;
   --secondary-border-color: #BEAB9A;
   --select-border: #BDB6B0;
+  --plug-color: #CDD5D8;
 
 
   font-synthesis: none;

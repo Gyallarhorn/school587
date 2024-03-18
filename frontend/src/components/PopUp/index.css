@@ -50,6 +50,7 @@
 @media (width >=1280px) {
   .popup-wrapper {
     top: 75px;
+    max-height: 220px;
   }
 
   .popup-option {
