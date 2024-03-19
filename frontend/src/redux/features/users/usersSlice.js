@@ -10,11 +10,11 @@ const initialState = ({
     name: true,
     year: false,
     economic: '',
-    page: 1,
   },
   query: {
     name: '',
     economic: '',
+    page: 1,
   },
 });
 

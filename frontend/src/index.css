@@ -61,6 +61,7 @@ button {
   padding: 0;
   font-family: 'SF UI Display', Arial, sans-serif;
   font-size: 12px;
+  font-weight: 400;
   line-height: 1.25;
   cursor: pointer;
   background: none;
@@ -79,6 +80,7 @@ button {
   --secondary-border-color: #BEAB9A;
   --select-border: #BDB6B0;
   --plug-color: #CDD5D8;
+  --arrow-disabled-color: rgb(247 247 247 / 50%);
 
 
   font-synthesis: none;

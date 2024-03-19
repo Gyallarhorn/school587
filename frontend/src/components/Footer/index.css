@@ -1,0 +1,167 @@
+.footer {
+  padding: 24px 29px;
+  color: var(--background);
+  background-color: var(--primary-text-color);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.footer-wrapper {
+  margin: 0 0 25px;
+}
+
+.footer-title {
+  margin: 0 0 12px;
+  font-size: 12px;
+}
+
+.footer-logo {
+  display: none;
+
+  & path {
+    fill: var(--background);
+  }
+
+}
+
+.footer-text {
+  font-weight: 700;
+}
+
+.deputy-link {
+  text-decoration: underline;
+}
+
+.footer-link,
+.deputy-link {
+  color: var(--background);
+  transition: opacity 0.5s ease;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.5;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.footer-content {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin: 0 0 8px;
+}
+
+.website {
+  margin: 0 0 40px;
+}
+
+.creators {
+  margin: 0 0 20px;
+}
+
+.creator-link {
+  display: block;
+  padding: 4px 0;
+}
+
+.copyright {
+  margin: 0;
+}
+
+.deputy-content {
+  margin: 10px 0 0;
+}
+
+@media (width >=768px) {
+  .footer {
+    display: grid;
+    grid-template-rows: auto minmax(149px, auto);
+    grid-template-columns: auto auto auto;
+    gap: 20px;
+    padding: 32px 32px 32px 29px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+  }
+
+  .main-header.footer-header {
+    margin: 0 0 22px;
+  }
+
+
+  .footer-logo {
+    display: block;
+    width: 42px;
+    height: 43px;
+  }
+
+  .copyright {
+    grid-area: 2 / 1 / -1 / 2;
+  }
+
+  .secretary {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  .footer-title {
+    margin: 0 0 15px;
+    font-size: 14px;
+  }
+
+  .footer-wrapper {
+    margin: 0;
+  }
+
+  .footer-content {
+    gap: 10px;
+    margin: 0 0 8px;
+  }
+
+  .deputy-content {
+    margin: 8px 0 0;
+  }
+
+  .creators,
+  .copyright {
+    align-self: end;
+  }
+}
+
+@media (width >=1280px) {
+  .footer {
+    grid-template-rows: auto minmax(115px, auto);
+    grid-template-columns: 376px auto auto;
+    gap: 20px 20px;
+    padding: 40px 69px 58px;
+  }
+
+  .main-header.footer-header {
+    margin: 0 0 30px;
+  }
+
+  .footer-logo {
+    width: 71px;
+    height: 73px;
+  }
+
+  .footer-title {
+    margin: 0 0 20px;
+    font-size: 16px;
+  }
+
+  .footer-content {
+    gap: 16px;
+    margin: 0 0 10px;
+  }
+
+  .deputy-content {
+    margin: 10px 0 0;
+  }
+
+  .creators,
+  .deputy {
+    margin: 0 0 0 75px;
+  }
+}

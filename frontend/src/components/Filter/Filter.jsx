@@ -100,6 +100,7 @@ const Filter = () => {
     const searchObject = {
       [checkedField[0]]: filter.query,
       economic: (filter.economic === 'Сфера деятельности' ? '' : filter.economic),
+      page: 1,
     };
 
     dispatch(setQuery(searchObject));

@@ -1,8 +1,11 @@
 .gallery {
   position: relative;
   display: grid;
+  grid-template-rows: min-content;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 10px 8px;
+  min-height: calc(100vh - 297px);
+  margin: 0 0 20px;
 }
 
 .gallery-title {
@@ -13,18 +16,19 @@
 
 .title-error {
   margin: 25px 0;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 @media (width >=768px) {
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 20px 16px;
+    min-height: calc(100vh - 277px);
   }
 
   .title-error {
     margin: 35px 0;
-    font-size: 25px;
+    font-size: 35px;
   }
 }
 
@@ -32,6 +36,8 @@
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
     gap: 40px 29px;
+    align-items: start;
+    min-height: calc(100vh - 416px);
   }
 
   .gallery-title {
@@ -41,6 +47,6 @@
 
   .title-error {
     margin: 45px 0;
-    font-size: 30px;
+    font-size: 50px;
   }
 }
