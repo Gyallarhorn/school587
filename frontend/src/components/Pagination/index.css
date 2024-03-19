@@ -1,0 +1,116 @@
+.pagination-container {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 1/ -1;
+  gap: 14px;
+  justify-content: space-between;
+  justify-self: center;
+  padding: 8px 16px;
+  margin: 40px 0 0;
+  list-style: none;
+  background-color: var(--primary-text-color);
+  border-radius: 25px;
+}
+
+.pagination-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-button {
+  padding: 4px 8px;
+  color: var(--background);
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color 0.5s ease,
+    color 0.5s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--primary-text-color);
+    background-color: var(--background);
+  }
+
+  &[disabled] {
+    pointer-events: none;
+  }
+}
+
+.dots {
+  color: var(--background);
+}
+
+.selected .pagination-button {
+  color: var(--primary-text-color);
+  background-color: var(--background);
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    content: '';
+    border-top: 2px solid var(--background);
+    border-left: 2px solid var(--background);
+    transition: border-color 0.5s ease;
+    transform: rotate(-45deg);
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    border-color: var(--arrow-disabled-color);
+  }
+
+  &[disabled] {
+    pointer-events: none;
+
+    &::before {
+      border-color: var(--arrow-disabled-color);
+    }
+  }
+}
+
+.right::before {
+  transform: rotate(135deg);
+}
+
+@media (width >=768px) {
+  .pagination-container {
+    gap: 22px;
+    padding: 12px 28px;
+    border-radius: 36px;
+  }
+
+  .pagination-button {
+    padding: 4px 9px;
+    font-size: 14px;
+  }
+
+  .arrow::before {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (width >=1280px) {
+  .pagination-container {
+    padding: 15px 43px;
+    border-radius: 40px;
+  }
+
+  .pagination-button {
+    padding: 7px 14px;
+    font-size: 20px;
+  }
+
+  .arrow::before {
+    width: 15px;
+    height: 15px;
+  }
+}

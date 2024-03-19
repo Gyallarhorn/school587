@@ -1,0 +1,16 @@
+#root {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  max-width: 1160px;
+  min-height: 100vh;
+  padding: 0 16px;
+  margin: 0 auto;
+
+  @media (width >=768px) {
+    padding: 0 40px;
+  }
+
+  @media (width >=1280px) {
+    padding: 0 60px;
+  }
+}

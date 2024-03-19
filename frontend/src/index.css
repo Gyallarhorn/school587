@@ -1,0 +1,134 @@
+/* Fonts */
+@font-face {
+  font-family: 'Coolvetica Rg';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/CoolveticaRg-Regular.woff2') format('woff2'),
+    url('../fonts/CoolveticaRg-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF UI Display';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/SFUIDisplay-Medium.woff2') format('woff2'),
+    url('../fonts/SFUIDisplay-Medium.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF UI Display';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/SFUIDisplay-Semibold.woff2') format('woff2'),
+    url('../fonts/SFUIDisplay-Semibold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF UI Display';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/SFUIDisplay-Bold.woff2') format('woff2'),
+    url('../fonts/SFUIDisplay-Bold.woff') format('woff');
+  font-display: swap;
+}
+
+
+
+/* @font-face {
+  font-family: 'SF UI Display';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../fonts/SFUIDisplay-Regular.woff2') format('woff2'),
+      url('../fonts/SFUIDisplay-Regular.woff') format('woff');
+  font-display: swap;
+}
+*/
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  font-family: 'SF UI Display', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.25;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+:root {
+  --background: #FCFCFC;
+  --opacity-background: rgb(247 247 247 / 70%);
+  --primary-text-color: #212126;
+  --opacity-primary-color: rgb(33 33 38 / 70%);
+  --border-color: #BEAB9A;
+  --input-background-color: rgb(227 224 221 / 50%);
+  --input-text-color: #575757;
+  --secondary-border-color: #BEAB9A;
+  --select-border: #BDB6B0;
+  --plug-color: #CDD5D8;
+  --arrow-disabled-color: rgb(247 247 247 / 50%);
+
+
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+  font-family: 'SF UI Display', Arial, sans-serif;
+
+  /* font-size: clamp(12px, 2.5vw, 16px); */
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--primary-text-color);
+  background-color: var(--background);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.Toastify__toast-body {
+  font-size: clamp(12px, 2.5vw, 16px);
+}
+
+@media (width >=768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (width >=1280px) {
+  body {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,133 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 20px;
+}
+
+.search-area {
+  position: relative;
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  column-gap: 5px;
+  align-items: center;
+  padding: 7px 15px;
+  margin: 0;
+  background-color: var(--input-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  transition: background-color 0.5s ease;
+
+  &:hover {
+    background-color: var(--background);
+  }
+
+  & .popup-wrapper {
+    top: 52px;
+  }
+}
+
+.active {
+  background-color: var(--background);
+}
+
+.input {
+  align-self: stretch;
+  padding: 0;
+  font-family: 'SF UI Display', Arial, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--input-text-color);
+  background: none;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button {
+  padding: 8px 15px;
+  background-color: var(--secondary-border-color);
+  border: 1px solid var(--secondary-border-color);
+  border-radius: 18px;
+  transition: background-color 0.5s ease;
+
+  &:hover,
+  &:focus {
+    background-color: var(--background);
+  }
+}
+
+@media (width >=768px) {
+  .form {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 16px;
+    margin: 0 0 30px;
+  }
+
+  .search-area {
+    column-gap: 10px;
+    padding: 9px 20px;
+    border-radius: 30px;
+
+    & .popup-wrapper {
+      top: 60px;
+    }
+  }
+
+  .search-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .input,
+  .button {
+    font-size: 14px;
+  }
+
+  .icon {
+    stroke-width: 1.5;
+  }
+}
+
+@media (width >=1280px) {
+  .form {
+    gap: 29px;
+    margin: 0 0 45px;
+  }
+
+  .search-area {
+    column-gap: 15px;
+    padding: 12px 30px;
+    border-radius: 40px;
+
+    & .popup-wrapper {
+      top: 60px;
+    }
+  }
+
+  .input,
+  .button {
+    font-size: 16px;
+  }
+
+  .search-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .button {
+    padding: 11px 20px;
+    border-radius: 38px;
+  }
+}
+
+@media (width >=1280px) {
+  .search-area .popup-wrapper {
+    top: 75px;
+  }
+}
