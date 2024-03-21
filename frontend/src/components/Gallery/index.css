@@ -4,8 +4,11 @@
   grid-template-rows: min-content;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 10px 8px;
-  min-height: calc(100vh - 297px);
   margin: 0 0 20px;
+}
+
+.no-content {
+  min-height: calc(100vh - 297px);
 }
 
 .gallery-title {
@@ -23,6 +26,9 @@
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 20px 16px;
+  }
+
+  .no-content {
     min-height: calc(100vh - 277px);
   }
 
@@ -37,6 +43,9 @@
     grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
     gap: 40px 29px;
     align-items: start;
+  }
+
+  .no-content {
     min-height: calc(100vh - 416px);
   }
 

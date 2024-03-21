@@ -6,11 +6,11 @@ import store from './redux/store.js';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
 
-// const test = {
-//   name: 'Hi',
-// };
+const test = {
+  name: 'Hi',
+};
 
-// localStorage.setItem('adminInfo', JSON.stringify(test));
+localStorage.setItem('adminInfo', JSON.stringify(test));
 
 const router = createBrowserRouter(
   createRoutesFromElements(

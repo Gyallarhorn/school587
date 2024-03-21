@@ -33,12 +33,14 @@
   transform-origin: center;
   will-change: transform;
 
-  .header-link-icon:hover & {
+  .header-link-icon:hover &,
+  .header-link-icon:focus & {
     transform: rotate(20deg);
   }
 
   .logo-link:hover &,
-  .header-link-admin:hover & {
+  .header-link-admin:hover &,
+  .header-link-admin:focus & {
     transform: rotate(-20deg);
   }
 }

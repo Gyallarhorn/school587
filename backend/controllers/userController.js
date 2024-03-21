@@ -49,6 +49,7 @@ const getUsers = async (req, res) => {
 
     const countPipeline = [...pipeline, { $count: 'totalUsers' }];
 
+    pipeline.push({ $project: { phone: 0 } });
     pipeline.push({ $sort: { createdAt: -1 } });
     pipeline.push({ $skip: LIMIT * page });
     pipeline.push({ $limit: LIMIT });
@@ -71,4 +72,18 @@ const getUsers = async (req, res) => {
   }
 };
 
-export { getUsers };
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('-phone');
+
+    if (!user) {
+      return res.status(404).json({ message: 'Пользователь не найден' });
+    }
+
+    return res.json({ user });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export { getUsers, getUser };
