@@ -19,7 +19,6 @@ const Gallery = () => {
 
   return (
     <section className={`gallery ${isFetching || isError ? 'no-content' : ''}`}>
-      {/* <Loader /> */}
       {isFetching && <Loader />}
       {isError && <h2 className="gallery-title title-error">Ничего не найдено</h2>}
       {!isFetching && isSuccess && data.length > 0 && (
