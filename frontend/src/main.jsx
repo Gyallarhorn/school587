@@ -5,18 +5,20 @@ import { Provider } from 'react-redux';
 import store from './redux/store.js';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
+import UserPage from './pages/UserPage/UserPage.jsx';
 
-const test = {
-  name: 'Hi',
-};
+// const test = {
+//   name: 'Hi',
+// };
 
-localStorage.setItem('adminInfo', JSON.stringify(test));
+// localStorage.setItem('adminInfo', JSON.stringify(test));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
 
     <Route path='/' element={<App />}>
       <Route path='/' index={true} element={<Home />} />
+      <Route path='users/:id' element={<UserPage />} />
     </Route>,
   ),
 );

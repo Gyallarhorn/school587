@@ -80,7 +80,7 @@ const getUser = async (req, res) => {
       return res.status(404).json({ message: 'Пользователь не найден' });
     }
 
-    return res.json({ user });
+    return res.json(user);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

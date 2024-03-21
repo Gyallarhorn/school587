@@ -10,7 +10,7 @@ const usersSlice = apiSlice.injectEndpoints({
       },
     }),
     getSpecificUser: builder.query({
-      query: (id) => `${import.meta.env.VITE_USERS_URL}/${id}}`,
+      query: (id) => `${import.meta.env.VITE_USERS_URL}/${id}`,
     }),
   }),
 });

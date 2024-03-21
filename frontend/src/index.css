@@ -35,18 +35,14 @@
   font-display: swap;
 }
 
-
-
-/* @font-face {
+@font-face {
   font-family: 'SF UI Display';
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   src: url('../fonts/SFUIDisplay-Regular.woff2') format('woff2'),
       url('../fonts/SFUIDisplay-Regular.woff') format('woff');
   font-display: swap;
 }
-*/
-
 
 img {
   max-width: 100%;
@@ -77,7 +73,6 @@ button {
   --border-color: #BEAB9A;
   --input-background-color: rgb(227 224 221 / 50%);
   --input-text-color: #575757;
-  --secondary-border-color: #BEAB9A;
   --select-border: #BDB6B0;
   --plug-color: #CDD5D8;
   --arrow-disabled-color: rgb(247 247 247 / 50%);
