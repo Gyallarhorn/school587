@@ -20,6 +20,34 @@ const catogories = [
     name: 'Год выпуска',
     nameValue: 'year',
   },
+  {
+    _id: '1711194899661',
+    name: 'Сфера деятельности',
+    nameValue: 'economic',
+  },
+];
+
+const letters = [
+  {
+    _id: '1711193361164',
+    name: 'А',
+  },
+  {
+    _id: '1711193394993',
+    name: 'Б',
+  },
+  {
+    _id: '1711193399514',
+    name: 'В',
+  },
+  {
+    _id: '1711193403822',
+    name: 'Г',
+  },
+  {
+    _id: '1711193407617',
+    name: 'Д',
+  },
 ];
 
 const Filter = () => {
@@ -27,7 +55,7 @@ const Filter = () => {
   const [isOpen, setOpen] = useState(false);
   const filter = useSelector((state) => state.users.filter);
   const dispatch = useDispatch();
-  const { data: activities, isSuccess, isError } = useFetchEcomonicActivitiesQuery();
+  const { data: activities, isSuccess: isSuccessEconomic, isError } = useFetchEcomonicActivitiesQuery();
   const { data: universities, isSuccess: isSuccessUniversities } = useDelayedApiQuery(filter.universityValue, 500);
 
   if (isError) {
@@ -36,6 +64,12 @@ const Filter = () => {
 
   const handleFocus = () => {
     setActive(true);
+
+    if (filter.economic && activities.length > 0) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
   };
 
   const handleBlur = () => {
@@ -60,7 +94,7 @@ const Filter = () => {
       return;
     }
 
-    if (filter.university && universities.length > 0) {
+    if ((filter.university && universities.length > 0)) {
       setOpen(true);
     } else {
       setOpen(false);
@@ -68,11 +102,18 @@ const Filter = () => {
   };
 
   const handleFieldsetClick = (e) => {
-    if (e.target.closest('.popup-option')) {
+    if (e.target.closest('.popup-option') && filter.university) {
       setOpen(false);
       dispatch(setUsersFilter({
         query: e.target.textContent,
         universityValue: e.target.textContent,
+      }));
+    }
+    if (e.target.closest('.popup-option') && filter.economic) {
+      setOpen(false);
+      dispatch(setUsersFilter({
+        query: e.target.textContent,
+        economicValue: e.target.textContent,
       }));
     }
   };
@@ -99,7 +140,7 @@ const Filter = () => {
 
     const searchObject = {
       [checkedField[0]]: filter.query,
-      economic: (filter.economic === 'Сфера деятельности' ? '' : filter.economic),
+      letter: (filter.letter === 'Класс' ? '' : filter.letter),
       page: 1,
     };
 
@@ -125,17 +166,26 @@ const Filter = () => {
             handleUniversityChange();
             handleChange(e);
           }}
+          placeholder={`${filter.university ? 'Введите свой ВУЗ' : ''}`}
           value={filter.query}
           id='search'
           name='query'
         />
         <button className='button' type='submit'>Искать</button>
-        {isSuccessUniversities && <PopUp
+        {isSuccessUniversities && filter.university && <PopUp
           isOpen={isOpen}
           isDefault={false}
           nameValue='univeristy'
           data={universities}
           style={{ top: '50px' }}
+        />}
+        {isSuccessEconomic && filter.economic && <PopUp
+          isOpen={isOpen}
+          isDefault={false}
+          nameValue='economic'
+          data={activities}
+          style={{ top: '50px' }}
+
         />}
       </fieldset>
       <Select
@@ -145,12 +195,19 @@ const Filter = () => {
         defaultName='name'
       />
       <Select
+        field='Класс'
+        data={letters}
+        isSuccess={true}
+        nameValue='letter'
+        defaultName='letter'
+      />
+      {/* <Select
         field='Сфера деятельности'
         data={activities}
         isSuccess={isSuccess}
         nameValue='economic'
         defaultName='economic'
-      />
+      /> */}
     </form >
   );
 };

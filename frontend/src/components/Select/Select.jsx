@@ -6,19 +6,19 @@ import './index.css';
 import { setUsersFilter } from '../../redux/features/users/usersSlice';
 import PopUp from '../PopUp/PopUp';
 
-const Select = ({ field, data, isSuccess, nameValue, defaultName }) => {
+const Select = ({ field, data, isSuccess, nameValue, defaultName, isDefault = true }) => {
   const [selectValue, setSelectValue] = useState(field);
   const [isOpen, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleDispatch = (e) => {
-    if (e.target.name === 'university' || e.target.name === 'year' || e.target.name === 'name') {
+    if (e.target.name === 'university' || e.target.name === 'year' || e.target.name === 'name' || e.target.name === 'economic') {
       dispatch(setUsersFilter({
         [e.target.name]: true,
       }));
     }
 
-    if (e.target.name === 'economic') {
+    if (e.target.name === 'letter') {
       dispatch(setUsersFilter({
         [e.target.name]: e.target.textContent,
       }));
@@ -64,7 +64,7 @@ const Select = ({ field, data, isSuccess, nameValue, defaultName }) => {
         data={data}
         defaultName={defaultName}
         field={field}
-        isDefault={true}
+        isDefault={isDefault}
         nameValue={nameValue}
       />}
     </div >
@@ -78,6 +78,7 @@ Select.propTypes = {
   data: PropTypes.array,
   isSuccess: PropTypes.bool,
   nameValue: PropTypes.string,
+  isDefault: PropTypes.bool,
 };
 
 

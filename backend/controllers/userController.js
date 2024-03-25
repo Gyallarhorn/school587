@@ -8,6 +8,7 @@ const getUsers = async (req, res) => {
       university,
       name,
       economic,
+      letter,
     } = req.query;
 
     const page = +req.query.page - 1 || 0;
@@ -16,8 +17,16 @@ const getUsers = async (req, res) => {
     const pipeline = [];
 
     if (name) {
+      const nameParts = name.split(' ').filter((part) => part.trim() !== '');
+      const regexNameParts = nameParts.map((part) => `(${part})`).join('.*');
+
       pipeline.push({
-        $match: { name: { $regex: name, $options: 'i' } },
+        $match: {
+          name: {
+            $regex: regexNameParts,
+            $options: 'i',
+          },
+        },
       });
     }
 
@@ -30,6 +39,12 @@ const getUsers = async (req, res) => {
     if (economic) {
       pipeline.push({
         $match: { economicActivity: economic },
+      });
+    }
+
+    if (letter) {
+      pipeline.push({
+        $match: { letter },
       });
     }
 

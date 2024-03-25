@@ -12,8 +12,8 @@ const PopUp = ({ isOpen,
       className={`popup-wrapper ${isOpen ? 'active-popup' : ''}`}
     >
       {isDefault && <button type='button' className="popup-option" name={defaultName}>{field}</button>}
-      {data.map((elem, id) => (
-        <button type='button' className='popup-option' key={id} name={`${elem?.nameValue ? elem.nameValue : nameValue}`}>{elem.name}</button>
+      {data.map((elem) => (
+        <button type='button' className='popup-option' key={elem._id} name={`${elem?.nameValue ? elem.nameValue : nameValue}`}>{elem.name}</button>
       ))}
     </div>
   );
