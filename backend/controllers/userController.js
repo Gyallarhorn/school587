@@ -101,4 +101,29 @@ const getUser = async (req, res) => {
   }
 };
 
-export { getUsers, getUser };
+const createUser = async (req, res) => {
+  const {
+    name, letter, year, phone, email,
+  } = req.body;
+
+  if (!name || !letter || !year || !phone || !email) {
+    return res.status(400).json({ message: 'Пожалуйста, заполните все обязательные поля' });
+  }
+
+  const existingUser = await User.findOne({ email: req.body.email });
+
+  if (existingUser) {
+    return res.status(400).json({ message: 'Выпускник уже зарегистрирован в системе' });
+  }
+
+  try {
+    const newUser = new User({ ...req.body });
+    await newUser.save();
+
+    return res.status(201).json({ message: 'Вы успешно зарегистрировались на платформе' });
+  } catch (error) {
+    return res.status(400).json({ message: 'Введите корректные данные' });
+  }
+};
+
+export { getUsers, getUser, createUser };
