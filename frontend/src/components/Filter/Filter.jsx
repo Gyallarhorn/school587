@@ -8,6 +8,7 @@ import { useState } from 'react';
 import useDelayedApiQuery from '../../hooks/useDelayedApiQuery';
 import PopUp from '../PopUp/PopUp';
 import SearchIcon from '../../assets/search.svg?react';
+import { letters } from '../../utils/constants';
 
 const catogories = [
   {
@@ -24,29 +25,6 @@ const catogories = [
     _id: '1711194899661',
     name: 'Сфера деятельности',
     nameValue: 'economic',
-  },
-];
-
-const letters = [
-  {
-    _id: '1711193361164',
-    name: 'А',
-  },
-  {
-    _id: '1711193394993',
-    name: 'Б',
-  },
-  {
-    _id: '1711193399514',
-    name: 'В',
-  },
-  {
-    _id: '1711193403822',
-    name: 'Г',
-  },
-  {
-    _id: '1711193407617',
-    name: 'Д',
   },
 ];
 
@@ -147,19 +125,33 @@ const Filter = () => {
     dispatch(setQuery(searchObject));
   };
 
+  const handleSelectClick = (e) => {
+    if (e.target.name === 'university' || e.target.name === 'year' || e.target.name === 'name' || e.target.name === 'economic') {
+      dispatch(setUsersFilter({
+        [e.target.name]: true,
+      }));
+    }
+
+    if (e.target.name === 'letter') {
+      dispatch(setUsersFilter({
+        [e.target.name]: e.target.textContent,
+      }));
+    }
+  };
+
 
   return (
-    <form className='form' onSubmit={(e) => handleSubmit(e)}>
+    <form className="form" onSubmit={(e) => handleSubmit(e)}>
       <fieldset
         className={`search-area ${isActive ? 'active' : ''}`}
         onPointerDown={(e) => handleFieldsetClick(e)}
         onKeyDown={(e) => handleKeyDown(e)}
       >
         <SearchIcon />
-        <label className='visually-hidden' htmlFor='search'>Поле поиска</label>
+        <label className="visually-hidden" htmlFor="search">Поле поиска</label>
         <input
           type="text"
-          className='input'
+          className="input"
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={(e) => {
@@ -168,38 +160,39 @@ const Filter = () => {
           }}
           placeholder={`${filter.university ? 'Введите свой ВУЗ' : ''}`}
           value={filter.query}
-          id='search'
-          name='query'
+          id="search"
+          name="query"
         />
-        <button className='button' type='submit'>Искать</button>
+        <button className="button" type="submit">Искать</button>
         {isSuccessUniversities && filter.university && <PopUp
           isOpen={isOpen}
           isDefault={false}
-          nameValue='univeristy'
+          nameValue="univeristy"
           data={universities}
           style={{ top: '50px' }}
         />}
         {isSuccessEconomic && filter.economic && <PopUp
           isOpen={isOpen}
           isDefault={false}
-          nameValue='economic'
+          nameValue="economic"
           data={activities}
           style={{ top: '50px' }}
-
         />}
       </fieldset>
       <Select
-        field='ФИО'
+        field="ФИО"
         data={catogories}
         isSuccess={true}
-        defaultName='name'
+        defaultName="name"
+        onFieldClick={(e) => handleSelectClick(e)}
       />
       <Select
-        field='Класс'
+        field="Класс"
         data={letters}
         isSuccess={true}
-        nameValue='letter'
-        defaultName='letter'
+        nameValue="letter"
+        defaultName="letter"
+        onFieldClick={(e) => handleSelectClick(e)}
       />
       {/* <Select
         field='Сфера деятельности'

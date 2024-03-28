@@ -5,16 +5,16 @@ import sharp from 'sharp';
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    const extname = path.extname(file.originalname);
-    const noExtensionFile = path.basename(file.originalname, extname);
-    cb(null, `${noExtensionFile}-${Date.now()}.webp`);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'uploads/');
+//   },
+//   // filename: (req, file, cb) => {
+//   //   cb(null, `image-${Date.now()}.webp`);
+//   // },
+// });
+
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   const fileTypes = /jpe?g|webp|png$/;
@@ -22,8 +22,6 @@ const fileFilter = (req, file, cb) => {
 
   const extname = path.extname(file.originalname);
   const { mimetype } = file;
-  console.log(mimetype);
-  console.log(extname);
 
   if (fileTypes.test(extname) && mimeTypes.test(mimetype)) {
     cb(null, true);
@@ -49,14 +47,22 @@ router.post('/', uploadSingleImage, async (req, res) => {
       return res.status(400).json({ message: 'Фото не должно весить больше 50мб' });
     }
 
-    let imagePath = req.file.path;
+    // const imagePath = req.file.path;
+    // console.log(imagePath);
+
+    const newPath = `image-${Date.now()}.webp`;
 
     if (req.file.mimetype !== 'image/webp') {
-      const webpBuffer = await sharp(req.file.path).webp({ quality: 85 }).toBuffer();
-      imagePath = imagePath.replace(/\.[^.]+$/, '.webp');
-      await sharp(webpBuffer).toFile(imagePath);
+      await sharp(req.file.buffer)
+        .webp({ quality: 85 })
+        .toFile(`uploads/${newPath}`);
+
+      // const webpBuffer = await sharp(req.file.buffer).webp({ quality: 85 }).toBuffer();
+      // await sharp(webpBuffer).toFile(`uploads/${newPath}`);
+    } else {
+      await sharp(req.file.buffer).toFile(`uploads/${newPath}`);
     }
-    return res.status(200).json({ photo: `/${imagePath}` });
+    return res.status(200).json({ photo: `${path.sep}uploads${path.sep}${newPath}` });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'Возникла ошибка в загрузке файла. Попробуйте позднее' });

@@ -1,0 +1,126 @@
+.form-header {
+  margin: 0 0 40px;
+}
+
+.register-form {
+  margin: 0 0 66px;
+}
+
+.form-title {
+  margin: 0 0 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--input-text-color);
+  text-transform: uppercase;
+}
+
+.open-questions-title {
+  margin: 0 0 8px;
+}
+
+.form-subtitle {
+  margin: 0 0 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--input-text-color);
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0;
+  margin: 0 0 35px;
+  border: none;
+}
+
+.form-wrapper {
+  position: relative;
+  display: grid;
+  grid-template-rows: min-content auto;
+  row-gap: 8px;
+}
+
+.register-input {
+  padding: 12px 14px;
+  color: var(--primary-text-color);
+  resize: vertical;
+  background-color: var(--input-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: background-color 0.5s ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: transparent;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.checkbox-label {
+  position: relative;
+  display: flex;
+  gap: 28px;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &::after {
+    flex-shrink: 0;
+    width: 17px;
+    height: 17px;
+    content: '';
+    border: 1px solid var(--primary-text-color);
+    border-radius: 5px;
+    transition: border-color 0.5s ease;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    width: 18px;
+    height: 18px;
+    content: '';
+    background: url('../mark.svg') no-repeat center;
+  }
+}
+
+.input-checkbox:focus-visible+.checkbox-label::after {
+  border-color: var(--select-border);
+}
+
+.input-checkbox:checked+.checkbox-label::before {
+  display: block;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  padding: 12px;
+  margin: 0 auto;
+  font-weight: 500;
+  background-color: var(--border-color);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  transition: background-color 0.5s ease;
+
+  &:not([disabled]) {
+    &:hover,
+    &:focus-visible {
+      background-color: transparent;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &[disabled] {
+    pointer-events: none;
+  }
+}

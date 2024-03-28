@@ -37,15 +37,6 @@
   left: 50%;
   width: 126px;
   height: 126px;
-
-
-  /* width: calc(100vw - 196px);
-  min-width: 126px;
-  max-width: 300px;
-  height: calc(100vw - 196px);
-  min-height: 126px;
-  max-height: 300px; */
-
   overflow: hidden;
   background-color: var(--plug-color);
   border: 1.5px solid var(--border-color);

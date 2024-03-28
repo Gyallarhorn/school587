@@ -14,6 +14,16 @@
   }
 }
 
+.register {
+  background-color: var(--input-background-color);
+  border-color: var(--border-color);
+
+  &:hover,
+  &:focus-visible {
+    background-color: transparent;
+  }
+}
+
 .select-wrapper {
   display: flex;
   align-items: center;

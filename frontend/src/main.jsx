@@ -6,6 +6,7 @@ import store from './redux/store.js';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
 import UserPage from './pages/UserPage/UserPage.jsx';
+import Register from './pages/Register/Register.jsx';
 
 // const test = {
 //   name: 'Hi',
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<App />}>
       <Route path='/' index={true} element={<Home />} />
       <Route path='users/:id' element={<UserPage />} />
+      <Route path='/register' element={<Register />} />
     </Route>,
   ),
 );

@@ -17,6 +17,10 @@
   }
 }
 
+.register-popup {
+  top: 67px;
+}
+
 .active-popup {
   display: grid;
   grid-template-rows: 1fr;

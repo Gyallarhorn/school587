@@ -40,7 +40,7 @@
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/SFUIDisplay-Regular.woff2') format('woff2'),
-      url('../fonts/SFUIDisplay-Regular.woff') format('woff');
+    url('../fonts/SFUIDisplay-Regular.woff') format('woff');
   font-display: swap;
 }
 
@@ -91,8 +91,6 @@ body {
   min-height: 100%;
   margin: 0;
   font-family: 'SF UI Display', Arial, sans-serif;
-
-  /* font-size: clamp(12px, 2.5vw, 16px); */
   font-size: 12px;
   font-style: normal;
   font-weight: 500;

@@ -1,4 +1,9 @@
+import { promises as fsPromises } from 'fs';
+import path from 'path';
 import User from '../models/User.js';
+import cleanData from '../utils/cleanData.js';
+
+const dirname = path.resolve();
 
 const LIMIT = 20;
 
@@ -103,26 +108,36 @@ const getUser = async (req, res) => {
 
 const createUser = async (req, res) => {
   const {
-    name, letter, year, phone, email,
+    forename, surname, letter, year, phone, email,
   } = req.body;
 
-  if (!name || !letter || !year || !phone || !email) {
+  if (!forename || !surname || !letter || !year || !phone || !email) {
     return res.status(400).json({ message: 'Пожалуйста, заполните все обязательные поля' });
   }
 
   const existingUser = await User.findOne({ email: req.body.email });
 
   if (existingUser) {
+    if (req.body.photo) {
+      fsPromises.unlink(path.join(dirname, req.body.photo));
+    }
+
     return res.status(400).json({ message: 'Выпускник уже зарегистрирован в системе' });
   }
 
+  const cleanedData = cleanData(req.body);
+
   try {
-    const newUser = new User({ ...req.body });
+    const newUser = new User({ ...cleanedData });
     await newUser.save();
 
     return res.status(201).json({ message: 'Вы успешно зарегистрировались на платформе' });
   } catch (error) {
-    return res.status(400).json({ message: 'Введите корректные данные' });
+    console.log(error);
+    if (req.body.photo) {
+      fsPromises.unlink(path.join(dirname, req.body.photo));
+    }
+    return res.status(400).json({ message: 'Не удалось создать нового пользователя' });
   }
 };
 
