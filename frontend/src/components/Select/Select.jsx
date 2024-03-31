@@ -1,29 +1,20 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Arrow from '../../assets/arrow.svg?react';
-import { useDispatch } from 'react-redux';
 import './index.css';
-import { setUsersFilter } from '../../redux/features/users/usersSlice';
 import PopUp from '../PopUp/PopUp';
 
-const Select = ({ field, data, isSuccess, nameValue, defaultName }) => {
+const Select = ({ field,
+  data,
+  isSuccess,
+  nameValue,
+  defaultName,
+  isDefault = true,
+  onFieldClick,
+  registerClassName = false,
+}) => {
   const [selectValue, setSelectValue] = useState(field);
   const [isOpen, setOpen] = useState(false);
-  const dispatch = useDispatch();
-
-  const handleDispatch = (e) => {
-    if (e.target.name === 'university' || e.target.name === 'year' || e.target.name === 'name') {
-      dispatch(setUsersFilter({
-        [e.target.name]: true,
-      }));
-    }
-
-    if (e.target.name === 'economic') {
-      dispatch(setUsersFilter({
-        [e.target.name]: e.target.textContent,
-      }));
-    }
-  };
 
   const handleFieldClick = (e) => {
     if (e.target.closest('.select')) {
@@ -32,7 +23,7 @@ const Select = ({ field, data, isSuccess, nameValue, defaultName }) => {
 
     if (e.target.closest('.popup-option')) {
       setSelectValue(e.target.textContent);
-      handleDispatch(e);
+      onFieldClick(e);
     }
   };
 
@@ -45,18 +36,18 @@ const Select = ({ field, data, isSuccess, nameValue, defaultName }) => {
 
     if (e.target.closest('.popup-option')) {
       setSelectValue(e.target.textContent);
-      handleDispatch(e);
+      onFieldClick(e);
     }
   };
 
   return (
-    <div className='select'
+    <div className={`select ${registerClassName ? 'register' : ''}`}
       tabIndex="0"
       onPointerDown={handleFieldClick}
       onKeyDown={handleKeyDown}
     >
       <div className="select-wrapper">
-        <span className='select-label'>{selectValue}</span>
+        <span className="select-label">{selectValue}</span>
         <Arrow />
       </div>
       {isSuccess && <PopUp
@@ -64,7 +55,7 @@ const Select = ({ field, data, isSuccess, nameValue, defaultName }) => {
         data={data}
         defaultName={defaultName}
         field={field}
-        isDefault={true}
+        isDefault={isDefault}
         nameValue={nameValue}
       />}
     </div >
@@ -78,6 +69,9 @@ Select.propTypes = {
   data: PropTypes.array,
   isSuccess: PropTypes.bool,
   nameValue: PropTypes.string,
+  isDefault: PropTypes.bool,
+  onFieldClick: PropTypes.func,
+  registerClassName: PropTypes.bool,
 };
 
 

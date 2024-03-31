@@ -18,6 +18,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "semi": ["error", "always"],
+    "jsx-quotes": ["error", "prefer-double"],
     "comma-dangle": ["error", "always-multiline"]
   },
 }

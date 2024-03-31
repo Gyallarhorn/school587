@@ -6,14 +6,16 @@ const PopUp = ({ isOpen,
   nameValue,
   field,
   data,
-  isDefault }) => {
+  isDefault,
+  registerClassName = false,
+}) => {
   return (
     <div
-      className={`popup-wrapper ${isOpen ? 'active-popup' : ''}`}
+      className={`popup-wrapper ${isOpen ? 'active-popup' : ''} ${registerClassName ? 'register-popup' : ''}`}
     >
-      {isDefault && <button type='button' className="popup-option" name={defaultName}>{field}</button>}
-      {data.map((elem, id) => (
-        <button type='button' className='popup-option' key={id} name={`${elem?.nameValue ? elem.nameValue : nameValue}`}>{elem.name}</button>
+      {isDefault && <button type="button" className="popup-option" name={defaultName}>{field}</button>}
+      {data.map((elem) => (
+        <button type="button" className="popup-option" key={elem._id} name={`${elem?.nameValue ? elem.nameValue : nameValue}`}>{elem.name}</button>
       ))}
     </div>
   );
@@ -26,6 +28,7 @@ PopUp.propTypes = {
   data: PropTypes.array,
   nameValue: PropTypes.string,
   isDefault: PropTypes.bool.isRequired,
+  registerClassName: PropTypes.bool,
 };
 
 export default PopUp;

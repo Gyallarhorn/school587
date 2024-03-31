@@ -29,10 +29,12 @@ const Pagination = ({ totalCount, currentPage, pageSize, siblingCount = 1 }) => 
         page: Number(e.target.textContent),
       }));
     }
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (e.target.closest('.pagination-button') || e.target.closest('.left') || e.target.closest('.right')) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   if (currentPage === 0 || paginationRange.length < 2) {
@@ -42,15 +44,15 @@ const Pagination = ({ totalCount, currentPage, pageSize, siblingCount = 1 }) => 
   const lastPage = paginationRange[paginationRange.length - 1];
   return (
     <ul
-      className='pagination-container'
+      className="pagination-container"
       onPointerDown={(e) => handlePagination(e)}
     >
-      <li className='pagination-item'>
+      <li className="pagination-item">
         <button className="arrow left" disabled={currentPage === 1}></button>
       </li>
       {paginationRange.map((elem, id) => {
         if (elem === DOTS) {
-          return <li key={id} className='pagination-item dots'>&#8230;</li>;
+          return <li key={id} className="pagination-item dots">&#8230;</li>;
         }
         return (
           <li key={id} className={`pagination-item ${currentPage === elem ? 'selected' : ''}`}>
@@ -58,7 +60,7 @@ const Pagination = ({ totalCount, currentPage, pageSize, siblingCount = 1 }) => 
           </li>
         );
       })}
-      <li className='pagination-item'>
+      <li className="pagination-item">
         <button className="arrow right" disabled={currentPage === lastPage}></button>
       </li>
     </ul>

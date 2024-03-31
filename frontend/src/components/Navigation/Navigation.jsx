@@ -10,17 +10,17 @@ const Navigation = () => {
   const { adminInfo } = useSelector((state) => state.auth);
 
   return (
-    <header className='header'>
+    <header className="header">
       <nav className="header-nav">
-        <Link to='/' className='header-link-icon logo-link' aria-label="Логотип">
-          <Logo className='logo-icon' />
+        <Link to="/" className="header-link-icon logo-link" aria-label="Логотип">
+          <Logo className="logo-icon" />
         </Link>
         <div className="header-content">
-          {adminInfo && <NavLink className='header-link' to='/admin-panel' >Панель</NavLink>}
-          <NavLink className='header-link' to='/register'>Регистрация</NavLink>
+          {adminInfo && <NavLink className="header-link" to="/admin-panel" >Панель</NavLink>}
+          <NavLink className="header-link" to="/register">Регистрация</NavLink>
         </div>
         <button className={`header-link-icon ${adminInfo ? 'header-link-admin' : ''}`} aria-label="Вход для администратора">
-          <LoginIcon className='login-icon' />
+          <LoginIcon className="login-icon" />
         </button>
       </nav>
     </header>

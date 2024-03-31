@@ -1,0 +1,174 @@
+.uploader-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  padding: 30px;
+  border: 2px dashed var(--border-color);
+  border-radius: 10px;
+}
+
+.uploader-wrapper-text {
+  margin: 0;
+  text-align: center;
+}
+
+.uploader-text-additional {
+  color: var(--input-text-color);
+}
+
+
+.upload-button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  align-self: center;
+  padding: 6px 16px;
+  font-weight: 500;
+  color: var(--background);
+  background-color: var(--primary-text-color);
+  border: 1px solid var(--primary-text-color);
+  border-radius: 15px;
+  transition: background-color 0.5s ease,
+    color 0.5s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--primary-text-color);
+    background-color: transparent;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.input-file {
+  display: none;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.modal {
+  position: relative;
+  width: calc(100% - 142px);
+  max-width: 400px;
+  height: auto;
+  padding: 45px 54px 50px;
+  background-color: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 2px rgb(33 33 38 / 10%);
+}
+
+.modal-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  & img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.modal-button {
+  padding: 9px 17px;
+  border-radius: 40px;
+}
+
+.preview-conainer {
+  align-self: center;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.preview-delete-button {
+  text-decoration: underline;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+
+@media (width >=768px) {
+  .uploader-wrapper {
+    grid-column: 1 / -1;
+    gap: 15px;
+  }
+
+  .upload-icon {
+    width: 22px;
+    height: 22px;
+
+    & path {
+      stroke-width: 1.5;
+    }
+  }
+
+  .upload-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .preview-delete-button {
+    font-size: 14px;
+  }
+}
+
+@media (width >=1280px) {
+  .uploader-wrapper {
+    gap: 20px;
+    padding: 52px;
+  }
+
+  .upload-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .upload-button {
+    gap: 12px;
+    padding: 11px 28px;
+    font-size: 16px;
+    border-radius: 20px;
+  }
+
+  .preview-delete-button {
+    font-size: 16px;
+  }
+}

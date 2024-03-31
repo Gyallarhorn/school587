@@ -25,6 +25,10 @@
   &:hover {
     opacity: 0.5;
   }
+
+  &.active {
+    text-decoration: underline;
+  }
 }
 
 .icon {

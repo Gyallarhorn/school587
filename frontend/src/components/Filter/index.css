@@ -71,11 +71,11 @@
 
   .search-area {
     column-gap: 10px;
-    padding: 9px 20px;
+    padding: 6px 20px;
     border-radius: 30px;
 
     & .popup-wrapper {
-      top: 60px;
+      top: 50px;
     }
   }
 
@@ -87,6 +87,10 @@
   .input,
   .button {
     font-size: 14px;
+  }
+
+  .button {
+    padding: 6px 15px;
   }
 
   .icon {
@@ -102,11 +106,11 @@
 
   .search-area {
     column-gap: 15px;
-    padding: 12px 30px;
+    padding: 7px 30px;
     border-radius: 40px;
 
     & .popup-wrapper {
-      top: 60px;
+      top: 62px;
     }
   }
 
@@ -121,13 +125,7 @@
   }
 
   .button {
-    padding: 11px 20px;
+    padding: 9px 20px;
     border-radius: 38px;
-  }
-}
-
-@media (width >=1280px) {
-  .search-area .popup-wrapper {
-    top: 75px;
   }
 }

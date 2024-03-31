@@ -1,4 +1,9 @@
+import { promises as fsPromises } from 'fs';
+import path from 'path';
 import User from '../models/User.js';
+import cleanData from '../utils/cleanData.js';
+
+const dirname = path.resolve();
 
 const LIMIT = 20;
 
@@ -8,6 +13,7 @@ const getUsers = async (req, res) => {
       university,
       name,
       economic,
+      letter,
     } = req.query;
 
     const page = +req.query.page - 1 || 0;
@@ -16,8 +22,16 @@ const getUsers = async (req, res) => {
     const pipeline = [];
 
     if (name) {
+      const nameParts = name.split(' ').filter((part) => part.trim() !== '');
+      const regexNameParts = nameParts.map((part) => `(${part})`).join('.*');
+
       pipeline.push({
-        $match: { name: { $regex: name, $options: 'i' } },
+        $match: {
+          name: {
+            $regex: regexNameParts,
+            $options: 'i',
+          },
+        },
       });
     }
 
@@ -29,7 +43,13 @@ const getUsers = async (req, res) => {
 
     if (economic) {
       pipeline.push({
-        $match: { economicActivity: economic },
+        $match: { economic },
+      });
+    }
+
+    if (letter) {
+      pipeline.push({
+        $match: { letter },
       });
     }
 
@@ -43,7 +63,6 @@ const getUsers = async (req, res) => {
       $match: {
         isPermitted: true,
         isChecked: true,
-        // $expr: { $gt: [{ $size: '$photo' }, 0] },
       },
     });
 
@@ -86,4 +105,40 @@ const getUser = async (req, res) => {
   }
 };
 
-export { getUsers, getUser };
+const createUser = async (req, res) => {
+  const {
+    forename, surname, letter, year, phone, email,
+  } = req.body;
+
+  if (!forename || !surname || !letter || !year || !phone || !email) {
+    return res.status(400).json({ message: 'Пожалуйста, заполните все обязательные поля' });
+  }
+
+  const existingUser = await User.findOne({ email: req.body.email });
+
+  if (existingUser) {
+    if (req.body.photo) {
+      fsPromises.unlink(path.join(dirname, req.body.photo));
+    }
+
+    return res.status(400).json({ message: 'Выпускник уже зарегистрирован в системе' });
+  }
+
+  const cleanedData = cleanData(req.body);
+
+  try {
+    const newUser = new User({ ...cleanedData });
+    await newUser.save();
+
+    return res.status(201).json({ message: 'Вы успешно зарегистрировались на платформе' });
+  } catch (error) {
+    console.log(error);
+    if (req.body.photo) {
+      fsPromises.unlink(path.join(dirname, req.body.photo));
+    }
+
+    return res.status(400).json({ message: 'Не удалось создать нового пользователя' });
+  }
+};
+
+export { getUsers, getUser, createUser };

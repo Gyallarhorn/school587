@@ -8,6 +8,7 @@ import connectDB from './config/db.js';
 import universityRoutes from './routes/universityRoutes.js';
 import activitityRoutes from './routes/activityRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import UploadsRoutes from './routes/uploadsRoutes.js';
 // import { initEcomonics, initUniversities, initUsers } from './mockData/initiate.js';
 // import createFolder from './utils/createFolder.js';
 
@@ -38,6 +39,7 @@ app.use(cookieParser());
 app.use('/api/v1/universities', universityRoutes);
 app.use('/api/v1/activities', activitityRoutes);
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/uploads', UploadsRoutes);
 
 app.use(`/${UPLOADS_FOLDER}`, express.static(UPLOADS_PATH));
 
