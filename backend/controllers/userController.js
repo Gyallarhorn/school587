@@ -2,107 +2,27 @@ import { promises as fsPromises } from 'fs';
 import path from 'path';
 import User from '../models/User.js';
 import cleanData from '../utils/cleanData.js';
+import { usersQuery, receiveUser } from '../utils/usersQuery.js';
 
 const dirname = path.resolve();
 
 const LIMIT = 20;
 
 const getUsers = async (req, res) => {
-  try {
-    const {
-      university,
-      name,
-      economic,
-      letter,
-    } = req.query;
-
-    const page = +req.query.page - 1 || 0;
-    const year = Number.isNaN(+req.query.year) ? '' : +req.query.year;
-
-    const pipeline = [];
-
-    if (name) {
-      const nameParts = name.split(' ').filter((part) => part.trim() !== '');
-      const regexNameParts = nameParts.map((part) => `(${part})`).join('.*');
-
-      pipeline.push({
-        $match: {
-          name: {
-            $regex: regexNameParts,
-            $options: 'i',
-          },
-        },
-      });
-    }
-
-    if (university) {
-      pipeline.push({
-        $match: { almaMater: university },
-      });
-    }
-
-    if (economic) {
-      pipeline.push({
-        $match: { economic },
-      });
-    }
-
-    if (letter) {
-      pipeline.push({
-        $match: { letter },
-      });
-    }
-
-    if (year) {
-      pipeline.push({
-        $match: { year },
-      });
-    }
-
-    pipeline.push({
-      $match: {
-        isPermitted: true,
-        isChecked: true,
-      },
-    });
-
-    const countPipeline = [...pipeline, { $count: 'totalUsers' }];
-
-    pipeline.push({ $project: { phone: 0 } });
-    pipeline.push({ $sort: { createdAt: -1 } });
-    pipeline.push({ $skip: LIMIT * page });
-    pipeline.push({ $limit: LIMIT });
-
-    const users = await User.aggregate(pipeline);
-    const count = await User.aggregate(countPipeline);
-
-    if (!users || users.length === 0) {
-      return res.status(404).json({ message: 'Пользователи не найдены' });
-    }
-
-    return res.json(({
-      total: count[0].totalUsers,
-      page: page + 1,
-      users,
-    }));
-  } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({ message: 'Пользователи не найдены' });
-  }
+  await usersQuery(req, res, LIMIT, {
+    $match: {
+      isPermitted: true,
+      isChecked: true,
+    },
+  });
 };
 
 const getUser = async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id).select('-phone');
+  await receiveUser(req, res, false);
+};
 
-    if (!user) {
-      return res.status(404).json({ message: 'Пользователь не найден' });
-    }
-
-    return res.json(user);
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
+const getUserByAdmin = async (req, res) => {
+  await receiveUser(req, res, true);
 };
 
 const createUser = async (req, res) => {
@@ -141,4 +61,61 @@ const createUser = async (req, res) => {
   }
 };
 
-export { getUsers, getUser, createUser };
+const getllCheckedUsers = async (req, res) => {
+  await usersQuery(req, res, LIMIT, {
+    $match: {
+      isChecked: true,
+    },
+  }, true);
+};
+
+const getNewUsers = async (req, res) => {
+  await usersQuery(req, res, LIMIT, {
+    $match: {
+      isChecked: false,
+    },
+  }, true);
+};
+
+const updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedData = {
+      ...req.body,
+      isChecked: true,
+    };
+    const updatedUser = await User.findByIdAndUpdate(id, updatedData, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'Выпускник не найден' });
+    }
+    return res.json(updatedUser);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Произошла ошибка. Попробуйте позднее' });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedUser = await User.findByIdAndDelete(id);
+    if (!deletedUser) {
+      return res.status(404).json({ message: 'Выпускник не найден' });
+    }
+    res.json({ message: 'Выпускник успешно удален' });
+  } catch (error) {
+    res.status(500).json({ message: 'Произошла ошибка, попробуйте позднее' });
+  }
+};
+
+export {
+  getUsers,
+  getUser,
+  createUser,
+  getllCheckedUsers,
+  getNewUsers,
+  getUserByAdmin,
+  updateUser,
+  deleteUser,
+};
