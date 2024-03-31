@@ -10,6 +10,10 @@ const cleanData = (data) => {
   if (newData.patronymic) {
     delete newData.patronymic;
   }
+
+  if (newData.economic && newData.economic === 'Сфера деятельности') {
+    delete newData.economic;
+  }
   return newData;
 };
 

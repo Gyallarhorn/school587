@@ -29,7 +29,7 @@
   }
 
   .no-content {
-    min-height: calc(100dvh - 277px);
+    min-height: calc(100dvh - 267px);
   }
 
   .title-error {
@@ -46,7 +46,7 @@
   }
 
   .no-content {
-    min-height: calc(100dvh - 416px);
+    min-height: calc(100dvh - 400px);
   }
 
   .gallery-title {

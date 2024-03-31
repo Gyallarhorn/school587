@@ -43,7 +43,7 @@ const getUsers = async (req, res) => {
 
     if (economic) {
       pipeline.push({
-        $match: { economicActivity: economic },
+        $match: { economic },
       });
     }
 
@@ -63,7 +63,6 @@ const getUsers = async (req, res) => {
       $match: {
         isPermitted: true,
         isChecked: true,
-        // $expr: { $gt: [{ $size: '$photo' }, 0] },
       },
     });
 
@@ -137,6 +136,7 @@ const createUser = async (req, res) => {
     if (req.body.photo) {
       fsPromises.unlink(path.join(dirname, req.body.photo));
     }
+
     return res.status(400).json({ message: 'Не удалось создать нового пользователя' });
   }
 };

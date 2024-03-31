@@ -42,7 +42,11 @@
 
 @media (width >=768px) {
   .popup-wrapper {
-    top: 60px;
+    top: 50px;
+  }
+
+  .register-popup {
+    top: 78px;
   }
 
   .popup-option {
@@ -53,8 +57,12 @@
 
 @media (width >=1280px) {
   .popup-wrapper {
-    top: 75px;
+    top: 62px;
     max-height: 220px;
+  }
+
+  .register-popup {
+    top: 93px;
   }
 
   .popup-option {

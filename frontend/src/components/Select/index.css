@@ -41,7 +41,7 @@
   .select {
     display: flex;
     align-items: center;
-    border-radius: 15px;
+    border-width: 1.5px;
   }
 
   .select-wrapper {
@@ -49,8 +49,7 @@
     flex-grow: 1;
     grid-template-columns: 1fr min-content;
     column-gap: 5px;
-    height: 20px;
-    padding: 15px 30px;
+    height: 18px;
     overflow: hidden;
   }
 
@@ -62,13 +61,9 @@
 }
 
 @media (width >=1280px) {
-  .select {
-    border-radius: 20px;
-  }
-
   .select-wrapper {
     height: 20px;
-    padding: 25px 30px;
+    padding: 17px 20px;
   }
 
   .arrow {

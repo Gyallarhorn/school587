@@ -1,4 +1,4 @@
-const mainContentKeys = ['year', 'letter', 'email', 'social', 'almaMater', 'position', 'workplace'];
+const mainContentKeys = ['year', 'letter', 'email', 'social', 'almaMater', 'position', 'workplace', 'economic'];
 const additioanlContentKeys = ['success', 'isSuccess', 'achievement', 'defineSuccess', 'successSource', 'mistakes', 'wish', 'wishToGraduates'];
 
 const letters = [

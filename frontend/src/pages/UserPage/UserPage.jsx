@@ -24,21 +24,21 @@ const UserPage = () => {
 
   return (
     <section className={`user ${isLoading || isError ? 'user-no-content' : ''}`}>
-      <Link className='back-button' to='/'>Назад</Link>
+      <Link className="back-button" to="/">Назад</Link>
       {isLoading || isError && <Loader />}
       {isSuccess && (
         <>
           <div className="main-content">
             <div className="image-wrapper">
-              {data.photo.length > 0
+              {data?.photo
                 ? (
-                  <img className='user-image avatar-image' src={`http://localhost:3000${data.photo[0]}`} alt={`${data.name}`} />
+                  <img className="user-image avatar-image" src={`http://localhost:3000${data.photo}`} alt={`${data.name}`} />
                 )
                 : (
-                  <picture className='image-container avatar-container'>
+                  <picture className="image-container avatar-container">
                     <source media="(min-width: 1280px)" srcSet={plugDekstop} />
                     <source media="(min-width: 768px)" srcSet={plugTablet} />
-                    <img className='userimager' src={plugMobile} alt={`${data.name}`} />
+                    <img className="userimager" src={plugMobile} alt={`${data.name}`} />
                   </picture>
                 )}
             </div>

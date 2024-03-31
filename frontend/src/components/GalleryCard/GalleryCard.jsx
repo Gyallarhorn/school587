@@ -9,9 +9,9 @@ import './index.css';
 const GalleryCard = ({ user }) => {
   return (
     <figure className="figure" tabIndex="0">
-      {user.photo.length > 0
+      {user?.photo
         ? (
-          <img className="user-image" src={`http://localhost:3000${user.photo[0]}`} alt={`Выпуск ${user.year}, ${user.letter} класс`} />
+          <img className="user-image" src={`http://localhost:3000${user.photo}`} alt={`Выпуск ${user.year}, ${user.letter} класс`} />
         )
         : (
           <picture className="image-container">

@@ -126,6 +126,11 @@ const Register = () => {
       return;
     }
 
+    if (info.letter === 'Класс') {
+      toast.error('Пожалуйста выберите класс');
+      return;
+    }
+
 
     try {
       let uploadedImagePath = null;
@@ -245,7 +250,7 @@ const Register = () => {
             />
           </div>
           <div className="form-wrapper">
-            <label htmlFor="email" className="input-label">Элекнтронная почта *</label>
+            <label htmlFor="email" className="input-label">Электронная почта *</label>
             <input
               className="input register-input"
               type="text"
@@ -306,6 +311,10 @@ const Register = () => {
               onChange={(e) => handleChange(e)}
             />
           </div>
+          <ImageUploader
+            uploadedImage={selectedImage}
+            onImageChange={(newValue) => setSelectedImage(newValue)}
+          />
         </fieldset>
         <h2 className="form-title">работа и учеба</h2>
         <fieldset className="work-info fieldset">
@@ -456,10 +465,6 @@ const Register = () => {
               rows={6}
             />
           </div>
-          <ImageUploader
-            uploadedImage={selectedImage}
-            onImageChange={(newValue) => setSelectedImage(newValue)}
-          />
           <div className="permission-wrapper">
             <input
               type="checkbox"

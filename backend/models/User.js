@@ -35,7 +35,7 @@ const userSchema = mongoose.Schema({
     type: String,
     trim: true,
   },
-  economicActivity: {
+  economic: {
     type: String,
     trim: true,
   },
@@ -79,7 +79,7 @@ const userSchema = mongoose.Schema({
     type: String,
     trim: true,
   },
-  photo: [{ type: String }],
+  photo: String,
   createdAt: {
     type: Date,
     default: Date.now,
