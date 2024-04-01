@@ -29,12 +29,6 @@ const usersSlice = createSlice({
       state.data = action.payload;
     },
     setUsersFilter: (state, action) => {
-      // if (action.payload.university && Object.prototype.hasOwnProperty.call(action.payload, 'universityValue')) {
-      //   const filteredObject = setFalseFields(state);
-      //   state.filter = { ...state.filter, ...filteredObject, ...action.payload };
-      //   return;
-      // }
-
       if (Object.prototype.hasOwnProperty.call(action.payload, 'query')) {
         state.filter = { ...state.filter, ...action.payload };
         return;
@@ -46,11 +40,6 @@ const usersSlice = createSlice({
         state.filter = { ...state.filter, ...filteredObject, ...action.payload, query: '', universityValue: '', economicValue: '' };
         return;
       }
-
-      // if (Object.prototype.hasOwnProperty.call(action.payload, 'economic')) {
-      //   state.filter = { ...state.filter, ...action.payload };
-      //   return;
-      // }
 
       if (Object.prototype.hasOwnProperty.call(action.payload, 'letter')) {
         state.filter = { ...state.filter, ...action.payload };

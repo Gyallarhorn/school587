@@ -1,7 +1,7 @@
 import { promises as fsPromises } from 'fs';
 import path from 'path';
 import User from '../models/User.js';
-import cleanData from '../utils/cleanData.js';
+import { cleanData, findEmptyFields } from '../utils/cleanData.js';
 import { usersQuery, receiveUser } from '../utils/usersQuery.js';
 
 const dirname = path.resolve();
@@ -80,11 +80,18 @@ const getNewUsers = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
+    const cleanedData = cleanData(req.body);
+    const deletedData = findEmptyFields(cleanedData);
     const updatedData = {
-      ...req.body,
+      ...cleanedData,
       isChecked: true,
     };
-    const updatedUser = await User.findByIdAndUpdate(id, updatedData, { new: true });
+
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { $set: updatedData, $unset: deletedData },
+      { new: true },
+    );
 
     if (!updatedUser) {
       return res.status(404).json({ message: 'Выпускник не найден' });
