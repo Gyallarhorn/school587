@@ -20,7 +20,7 @@ const usersQuery = async (req, res, limit, options, allInfo = false) => {
 
       pipeline.push({
         $match: {
-          name: {
+          fullName: {
             $regex: regexNameParts,
             $options: 'i',
           },

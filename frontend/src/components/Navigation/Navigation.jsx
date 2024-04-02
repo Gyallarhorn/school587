@@ -7,7 +7,6 @@ import { createPortal } from 'react-dom';
 import './index.css';
 import { useState } from 'react';
 import AdminPopup from '../AdminPopup/AdminPopup';
-import { useLogoutMutation } from '../../redux/api/admin';
 import { logout } from '../../redux/features/auth/authSlice';
 import { toast } from 'react-toastify';
 
@@ -17,10 +16,7 @@ const Navigation = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const [adminLogout] = useLogoutMutation();
-
-  const handleClick = async () => {
-    await adminLogout();
+  const handleClick = () => {
     dispatch(logout());
     toast.success('Вы успешно вышли из системы');
   };
@@ -33,7 +29,7 @@ const Navigation = () => {
             <Logo className="logo-icon" />
           </Link>
           <div className="header-content">
-            {adminInfo && <NavLink className="header-link" to="/admin-panel/users" >Панель</NavLink>}
+            {adminInfo && <NavLink className="header-link" to="/admin-panel/checked-users" >Панель</NavLink>}
             <NavLink className="header-link" to="/register">Регистрация</NavLink>
           </div>
           <button

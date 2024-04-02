@@ -44,15 +44,11 @@
   transform: translate(-50%, -56%);
 }
 
-.avatar-image {
-  object-position: top;
-}
-
 .avatar-container {
+  align-items: flex-end;
   width: 126px;
   height: 126px;
 }
-
 
 .user-title {
   margin: 0 0 15px;

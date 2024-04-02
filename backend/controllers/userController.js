@@ -3,6 +3,7 @@ import path from 'path';
 import User from '../models/User.js';
 import { cleanData, findEmptyFields } from '../utils/cleanData.js';
 import { usersQuery, receiveUser } from '../utils/usersQuery.js';
+import countUsers from '../utils/countUsers.js';
 
 const dirname = path.resolve();
 
@@ -27,10 +28,10 @@ const getUserByAdmin = async (req, res) => {
 
 const createUser = async (req, res) => {
   const {
-    forename, surname, letter, year, phone, email,
+    firstName, lastName, letter, year, phone, email,
   } = req.body;
 
-  if (!forename || !surname || !letter || !year || !phone || !email) {
+  if (!firstName || !lastName || !letter || !year || !phone || !email) {
     return res.status(400).json({ message: 'Пожалуйста, заполните все обязательные поля' });
   }
 
@@ -103,6 +104,22 @@ const updateUser = async (req, res) => {
   }
 };
 
+const countNewUsers = async (req, res) => {
+  await countUsers(res, {
+    $match: {
+      isChecked: false,
+    },
+  });
+};
+
+const countCheckedUsers = async (req, res) => {
+  await countUsers(res, {
+    $match: {
+      isChecked: true,
+    },
+  });
+};
+
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -125,4 +142,6 @@ export {
   getUserByAdmin,
   updateUser,
   deleteUser,
+  countNewUsers,
+  countCheckedUsers,
 };

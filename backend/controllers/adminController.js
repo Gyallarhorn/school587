@@ -47,12 +47,13 @@ const loginAdmin = async (req, res) => {
     const isPasswordValid = await bcrypt.compare(password, existingAdmin.password);
 
     if (isPasswordValid) {
-      createToken(res, existingAdmin._id);
+      const token = createToken(res, existingAdmin._id);
 
       res.status(201).json({
         _id: existingAdmin._id,
         login: existingAdmin.login,
         isAdmin: existingAdmin.isAdmin,
+        token,
       });
     } else {
       res.status(401).json({ message: 'Введите верные логин и пароль' });
@@ -62,13 +63,4 @@ const loginAdmin = async (req, res) => {
   }
 };
 
-const logoutAdmin = async (req, res) => {
-  res.cookie('jwt', '', {
-    httpOnly: true,
-    expires: new Date(0),
-  });
-
-  res.status(200).json({ message: 'Вы успешно вышли из системы' });
-};
-
-export { createAdmin, loginAdmin, logoutAdmin };
+export { createAdmin, loginAdmin };

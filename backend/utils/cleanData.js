@@ -1,4 +1,4 @@
-const FIELDS = ['name', 'year', 'letter', 'phone', 'email', 'social', 'almaMater', 'position', 'workplace', 'economic', 'success', 'isSuccess', 'achievement', 'defineSuccess', 'successSource', 'mistakes', 'wish', 'wishToGraduates', 'photo', 'isPermitted'];
+const FIELDS = ['firstName', 'lastName', 'middleName', 'year', 'letter', 'phone', 'email', 'social', 'almaMater', 'position', 'workplace', 'economic', 'success', 'isSuccess', 'achievement', 'defineSuccess', 'successSource', 'mistakes', 'wish', 'wishToGraduates', 'photo', 'isPermitted'];
 
 const cleanData = (data) => {
   const nonEmtpyKeys = Object.keys(data).filter((key) => data[key]);
@@ -6,16 +6,15 @@ const cleanData = (data) => {
   nonEmtpyKeys.forEach((key) => {
     newData[key] = data[key];
   });
-  newData.name = `${newData.surname} ${newData.forename} ${newData.patronymic ? newData.patronymic : ''}`.trim();
-  delete newData.forename;
-  delete newData.surname;
-  if (newData.patronymic) {
-    delete newData.patronymic;
-  }
+
+  newData.fullName = `${newData.lastName} ${newData.firstName} ${newData?.middleName ? newData?.middleName : ''}`.trim();
 
   if (newData.economic && newData.economic === 'Сфера деятельности') {
     delete newData.economic;
   }
+
+  // console.log(newData);
+
   return newData;
 };
 

@@ -3,8 +3,8 @@
   font-family: 'Coolvetica Rg';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/CoolveticaRg-Regular.woff2') format('woff2'),
-    url('../fonts/CoolveticaRg-Regular.woff') format('woff');
+  src: url('/fonts/CoolveticaRg-Regular.woff2') format('woff2'),
+    url('/fonts/CoolveticaRg-Regular.woff') format('woff');
   font-display: swap;
 }
 
@@ -12,8 +12,8 @@
   font-family: 'SF UI Display';
   font-style: normal;
   font-weight: 500;
-  src: url('../fonts/SFUIDisplay-Medium.woff2') format('woff2'),
-    url('../fonts/SFUIDisplay-Medium.woff') format('woff');
+  src: url('/fonts/SFUIDisplay-Medium.woff2') format('woff2'),
+    url('/fonts/SFUIDisplay-Medium.woff') format('woff');
   font-display: swap;
 }
 
@@ -21,8 +21,8 @@
   font-family: 'SF UI Display';
   font-style: normal;
   font-weight: 600;
-  src: url('../fonts/SFUIDisplay-Semibold.woff2') format('woff2'),
-    url('../fonts/SFUIDisplay-Semibold.woff') format('woff');
+  src: url('/fonts/SFUIDisplay-Semibold.woff2') format('woff2'),
+    url('/fonts/SFUIDisplay-Semibold.woff') format('woff');
   font-display: swap;
 }
 
@@ -30,8 +30,8 @@
   font-family: 'SF UI Display';
   font-style: normal;
   font-weight: 700;
-  src: url('../fonts/SFUIDisplay-Bold.woff2') format('woff2'),
-    url('../fonts/SFUIDisplay-Bold.woff') format('woff');
+  src: url('/fonts/SFUIDisplay-Bold.woff2') format('woff2'),
+    url('/fonts/SFUIDisplay-Bold.woff') format('woff');
   font-display: swap;
 }
 
@@ -39,8 +39,8 @@
   font-family: 'SF UI Display';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/SFUIDisplay-Regular.woff2') format('woff2'),
-    url('../fonts/SFUIDisplay-Regular.woff') format('woff');
+  src: url('/fonts/SFUIDisplay-Regular.woff2') format('woff2'),
+    url('/fonts/SFUIDisplay-Regular.woff') format('woff');
   font-display: swap;
 }
 
@@ -76,6 +76,7 @@ button {
   --select-border: #BDB6B0;
   --plug-color: #CDD5D8;
   --arrow-disabled-color: rgb(247 247 247 / 50%);
+  --admin-link-background: rgb(190 171 154 / 40%);
 
 
   font-synthesis: none;

@@ -8,19 +8,19 @@ import Home from './pages/Home/Home.jsx';
 import UserPage from './pages/UserPage/UserPage.jsx';
 import Register from './pages/Register/Register.jsx';
 import AdminRoutes from './pages/Admin/AdminRoutes.jsx';
-import Panel from './pages/Admin/Panel/Panel.jsx';
+import PanelChecked from './pages/Admin/PanelChecked/PanelChecked.jsx';
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-
     <Route path="/" element={<App />}>
       <Route path="/" index={true} element={<Home />} />
-      <Route path="users/:id" element={<UserPage />} />
+      <Route path="/users/:id" element={<UserPage />} />
       <Route path="/register" element={<Register />} />
 
       <Route path="" element={<AdminRoutes />}>
-        <Route path="/admin-panel/users" element={<Panel />} />
+        <Route path="/admin-panel/checked-users" element={<PanelChecked />} />
+        <Route path="/admin-panel/checked-users/:id" element={<UserPage />} />
       </Route>
 
     </Route>,

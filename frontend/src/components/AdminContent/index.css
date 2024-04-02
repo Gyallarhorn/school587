@@ -1,0 +1,43 @@
+.admin-content {
+  margin: 0 0 10px;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.admin-content-top {
+  display: none;
+}
+
+
+
+@media (width >=768px) {
+  .admin-content {
+    margin: 0 0 20px;
+  }
+
+  .admin-headers {
+    padding: 0 0 15px;
+    color: var(--input-text-color);
+    text-align: left;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-color);
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  .admin-content-top {
+    display: table-header-group;
+  }
+}
+
+@media (width >=1280px) {
+  .admin-content {
+    margin: 0 0 40px;
+  }
+
+  .admin-headers {
+    padding: 0 0 20px;
+  }
+}

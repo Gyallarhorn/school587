@@ -27,7 +27,6 @@ const AdminPopup = ({ isOpen, onPopupOpen }) => {
 
     try {
       const res = await login(formData).unwrap();
-      console.log(res);
       dispatch(setCredentials(res));
       onPopupOpen(false);
       toast.success('Добро пожаловать, администратор');

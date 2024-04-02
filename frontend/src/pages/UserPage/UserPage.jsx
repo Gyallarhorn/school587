@@ -32,17 +32,17 @@ const UserPage = () => {
             <div className="image-wrapper">
               {data?.photo
                 ? (
-                  <img className="user-image avatar-image" src={`http://localhost:3000${data.photo}`} alt={`${data.name}`} />
+                  <img className="user-image" src={`http://localhost:3000${data.photo}`} alt={`${data.lastName}`} />
                 )
                 : (
                   <picture className="image-container avatar-container">
                     <source media="(min-width: 1280px)" srcSet={plugDekstop} />
                     <source media="(min-width: 768px)" srcSet={plugTablet} />
-                    <img className="userimager" src={plugMobile} alt={`${data.name}`} />
+                    <img className="user-image" src={plugMobile} alt={`${data.lastName}`} />
                   </picture>
                 )}
             </div>
-            <h1 className="user-title">{data.name}</h1>
+            <h1 className="user-title">{data.fullName}</h1>
             <dl className="main-content-list">
               {mainContentKeys.map((key, index) => {
                 if (data[key]) {
