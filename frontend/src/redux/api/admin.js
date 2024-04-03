@@ -40,6 +40,26 @@ const adminSlice = apiSlice.injectEndpoints({
         method: 'DELETE',
       }),
     }),
+
+    getSpecificUserByAdmin: builder.query({
+      query: (id) => `${import.meta.env.VITE_ADMIN_URL}/specific-user/${id}`,
+    }),
+
+    deleteExistingPhoto: builder.mutation({
+      query: (data) => ({
+        url: `${import.meta.env.VITE_UPLOADS_URL}/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+    }),
+
+    updateUser: builder.mutation({
+      query: ({ id, updatedUser }) => ({
+        url: `${import.meta.env.VITE_ADMIN_URL}/update-user/${id}`,
+        method: 'PUT',
+        body: updatedUser,
+      }),
+    }),
   }),
 });
 
@@ -50,4 +70,7 @@ export const {
   useCountNewUsersQuery,
   useCountCheckedUsersQuery,
   useDeleteUserMutation,
+  useGetSpecificUserByAdminQuery,
+  useDeleteExistingPhotoMutation,
+  useUpdateUserMutation,
 } = adminSlice;

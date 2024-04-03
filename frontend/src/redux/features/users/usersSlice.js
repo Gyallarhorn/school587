@@ -35,7 +35,6 @@ const usersSlice = createSlice({
       }
 
       if (action.payload.university || action.payload.year || action.payload.name || action.payload.economic) {
-        console.log('Привет');
         const filteredObject = setFalseFields(state);
         state.filter = { ...state.filter, ...filteredObject, ...action.payload, query: '', universityValue: '', economicValue: '' };
         return;

@@ -8,18 +8,28 @@ import { setUsers } from "../../redux/features/users/usersSlice";
 import Pagination from "../Pagination/Pagination";
 import './index.css';
 import { toast } from "react-toastify";
+import { useLocation } from "react-router";
 
 const AdminChecked = () => {
   const dispatch = useDispatch();
   const { query } = useSelector((state) => state.users);
   const { data } = useSelector((state) => state.users);
+  const location = useLocation();
+  const source = new URLSearchParams(location.search).get('source');
 
-  const { data: countNewUsers, isLoading: isLoadingCountingNewUsers, isSuccess: isSuccessCountNewUsers } = useCountNewUsersQuery();
+  const { data: countNewUsers, isLoading: isLoadingCountingNewUsers, isSuccess: isSuccessCountNewUsers, refetch: refetchCountingNewUsers } = useCountNewUsersQuery();
   const { data: countCheckedUsers, isLoading: isLoadingCountingCheckedUsers, isSuccess: isSuccessCountCheckedUsers, refetch: refetchCountCheckedUsersQuery } = useCountCheckedUsersQuery();
   const { data: allCheckedUsers, isFetching: isFetchingCheckedUsers, isSuccess: isSuccessCheckedUsers, refetch: refetchAllCheckedUsersQuery, isError } = useGetAllCheckedUsersQuery(query);
 
+  const [deleteUser, { isLoading: isLoadingDeleting }] = useDeleteUserMutation();
 
-  const [deleteUser] = useDeleteUserMutation();
+  useEffect(() => {
+    if (source) {
+      refetchAllCheckedUsersQuery();
+      refetchCountCheckedUsersQuery();
+      refetchCountingNewUsers();
+    }
+  }, [source]);
 
   const handleDelete = async (id) => {
     try {
@@ -37,7 +47,6 @@ const AdminChecked = () => {
       toast.error(err.message);
     }
   };
-
 
   useEffect(() => {
     dispatch(setUsers(allCheckedUsers?.users || []));
@@ -61,6 +70,7 @@ const AdminChecked = () => {
             <AdminContent
               data={data}
               onDelete={handleDelete}
+              isLoading={isLoadingDeleting}
             />
             <Pagination
               totalCount={Number(allCheckedUsers.total)}

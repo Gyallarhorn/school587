@@ -13,15 +13,12 @@ const cleanData = (data) => {
     delete newData.economic;
   }
 
-  // console.log(newData);
-
   return newData;
 };
 
 const findEmptyFields = (data) => {
   const nonEmtpyKeys = Object.keys(data).filter((key) => data[key]);
   const emptyFields = FIELDS.filter((elem) => !nonEmtpyKeys.includes(elem));
-  console.log(emptyFields);
   return emptyFields.reduce((acc, elem) => {
     if (!acc[elem]) {
       acc[elem] = '';

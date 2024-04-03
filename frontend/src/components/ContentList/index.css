@@ -29,7 +29,7 @@
 @media (width >=768px) {
   .content-list-wrapper:not(.additional-list-wrapper) {
     display: grid;
-    grid-template-columns: 140px 1fr;
+    grid-template-columns: 148px 1fr;
     gap: 10px;
   }
 
@@ -44,10 +44,9 @@
 
 @media (width >=1280px) {
   .content-list-wrapper:not(.additional-list-wrapper) {
-    grid-template-columns: 198px 1fr;
+    grid-template-columns: 213px 1fr;
     gap: 21px;
   }
-
 
   .content-term,
   .content-definition {

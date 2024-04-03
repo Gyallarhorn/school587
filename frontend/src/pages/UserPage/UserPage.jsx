@@ -1,5 +1,4 @@
 import { useParams } from "react-router";
-import { useGetSpecificUserQuery } from "../../redux/api/users";
 import { Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import plugMobile from '../../assets/plug_mobile.webp';
@@ -9,14 +8,16 @@ import './index.css';
 import ContentList from "../../components/ContentList/ContentList";
 import { mainContentKeys, additioanlContentKeys } from "../../utils/constants";
 import { toast } from "react-toastify";
+import PropTypes from 'prop-types';
+import useUserData from "../../hooks/useUserData";
 
-const UserPage = () => {
+const UserPage = ({ isAdmin }) => {
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
   });
   const { id } = useParams();
-  const { data, isLoading, isError, isSuccess } = useGetSpecificUserQuery(id);
+  const { data, isLoading, isError, isSuccess } = useUserData(isAdmin, id);
 
   if (isError) {
     toast.error('Пользователь не найден');
@@ -63,5 +64,12 @@ const UserPage = () => {
     </section>
   );
 };
+
+
+UserPage.propTypes = {
+  isAdmin: PropTypes.bool.isRequired,
+};
+
+
 
 export default UserPage;

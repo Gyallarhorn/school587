@@ -23,7 +23,7 @@ const Navigation = () => {
 
   return (
     <>
-      <header className={`header ${adminInfo?.isAdmin ? 'header-admin' : ''}`}>
+      <header className={`header ${adminInfo?.isAdmin ? 'header-admin' : ''}`.trim()}>
         <nav className="header-nav">
           <Link to="/" className="header-link-icon logo-link" aria-label="Логотип">
             <Logo className="logo-icon" />

@@ -10,7 +10,7 @@ import cropImage from "../../utils/cropImage";
 const MIN_DIMENSION = 150;
 const ASPECT_RATIO = 0.83;
 
-const ImageUploader = ({ uploadedImage, onImageChange }) => {
+const ImageUploader = ({ uploadedImage, onImageChange, existingPhoto, onDelete }) => {
   const inputRef = useRef(null);
   const imageRef = useRef(null);
   const [crop, setCrop] = useState();
@@ -85,7 +85,7 @@ const ImageUploader = ({ uploadedImage, onImageChange }) => {
 
   return (
     <div className="form-wrapper uploader-wrapper">
-      {!uploadedImage ?
+      {!uploadedImage && !existingPhoto ?
         (<>
           <p className="uploader-wrapper-text">Выберите фотографию и&nbsp;приложите&nbsp;ее</p>
           <p className="uploader-wrapper-text uploader-text-additional">Спозиционируйте изображение так, чтобы лицо было расположено в верхней трети фотографии</p>
@@ -104,28 +104,44 @@ const ImageUploader = ({ uploadedImage, onImageChange }) => {
           </button>
         </>
         )
-        :
-        (
+        : existingPhoto && existingPhoto !== '' ? (
           <>
             <p className="uploader-wrapper-text">Фотография успешно загружена</p>
-            {imageSrc && !isOpenModal && (
+            {!isOpenModal && (
               <div className="preview-conainer">
-                <img className="preview-image" src={imageSrc} alt="Загруженная фото" />
+                <img className="preview-image" src={`http://localhost:3000${existingPhoto}`} alt="Загруженная фото" />
               </div>
             )}
             <button
               className="preview-delete-button"
               type="button"
-              onClick={() => {
-                onImageChange(null);
-                setImageSrc('');
-              }}
+              onClick={onDelete}
             >
               Удалить
             </button>
           </>
-
         )
+          :
+          (
+            <>
+              <p className="uploader-wrapper-text">Фотография успешно загружена</p>
+              {imageSrc && !isOpenModal && (
+                <div className="preview-conainer">
+                  <img className="preview-image" src={imageSrc} alt="Загруженная фото" />
+                </div>
+              )}
+              <button
+                className="preview-delete-button"
+                type="button"
+                onClick={() => {
+                  onImageChange(null);
+                  setImageSrc('');
+                }}
+              >
+                Удалить
+              </button>
+            </>
+          )
       }
       {imageSrc && (
         <div className={`modal-container ${isOpenModal ? 'modal-open' : ''}`}>
@@ -175,6 +191,8 @@ const ImageUploader = ({ uploadedImage, onImageChange }) => {
 ImageUploader.propTypes = {
   uploadedImage: PropTypes.object,
   onImageChange: PropTypes.func,
+  existingPhoto: PropTypes.string,
+  onDelete: PropTypes.func,
 };
 
 export default ImageUploader;

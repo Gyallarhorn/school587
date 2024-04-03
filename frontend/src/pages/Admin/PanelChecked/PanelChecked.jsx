@@ -1,4 +1,4 @@
-import AdminChecked from "../../../components/AdminChecked/AdminChecked";
+import AdminChecked from "../../../components/AdminContainer/AdminChecked";
 import Filter from "../../../components/Filter/Filter";
 
 const PanelChecked = () => {

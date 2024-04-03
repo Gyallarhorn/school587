@@ -194,13 +194,6 @@ const Filter = () => {
         defaultName="letter"
         onFieldClick={(e) => handleSelectClick(e)}
       />
-      {/* <Select
-        field='Сфера деятельности'
-        data={activities}
-        isSuccess={isSuccess}
-        nameValue='economic'
-        defaultName='economic'
-      /> */}
     </form >
   );
 };

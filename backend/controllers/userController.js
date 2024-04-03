@@ -124,11 +124,18 @@ const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
     const deletedUser = await User.findByIdAndDelete(id);
+
     if (!deletedUser) {
       return res.status(404).json({ message: 'Выпускник не найден' });
     }
+
+    if (deletedUser?.photo) {
+      fsPromises.unlink(path.join(dirname, deletedUser.photo));
+    }
+
     res.json({ message: 'Выпускник успешно удален' });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: 'Произошла ошибка, попробуйте позднее' });
   }
 };

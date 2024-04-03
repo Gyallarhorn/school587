@@ -10,7 +10,7 @@ import activitityRoutes from './routes/activityRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import UploadsRoutes from './routes/uploadsRoutes.js';
 import AdminRoutes from './routes/adminRoutes.js';
-// import { initEcomonics, initUniversities, initUsers } from './mockData/initiate.js';
+import { initEcomonics, initUniversities, initUsers } from './mockData/initiate.js';
 // import createFolder from './utils/createFolder.js';
 
 // Configuration
@@ -23,8 +23,8 @@ const UPLOADS_PATH = path.join(dirname, UPLOADS_FOLDER);
 
 // Mock data and uploads folder
 
-// initUniversities();
 // createFolder(UPLOADS_PATH);
+// initUniversities();
 // initUsers();
 // initEcomonics();
 

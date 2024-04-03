@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Arrow from '../../assets/arrow.svg?react';
 import './index.css';
 import PopUp from '../PopUp/PopUp';
+import { useSelector } from 'react-redux';
 
 const Select = ({ field,
   data,
@@ -12,9 +13,11 @@ const Select = ({ field,
   isDefault = true,
   onFieldClick,
   registerClassName = false,
+  registerData,
 }) => {
   const [selectValue, setSelectValue] = useState(field);
   const [isOpen, setOpen] = useState(false);
+  const { filter } = useSelector((state) => state.users);
 
   const handleFieldClick = (e) => {
     if (e.target.closest('.select')) {
@@ -26,6 +29,32 @@ const Select = ({ field,
       onFieldClick(e);
     }
   };
+
+  useEffect(() => {
+    const filterToSelectValueMap = {
+      university: 'ВУЗ',
+      year: 'Год выпуска',
+      economic: 'Сфера деятельности',
+      name: 'ФИО',
+    };
+
+    const matchedFilter = Object.keys(filterToSelectValueMap).find((key) => filter[key]);
+
+    if (filter.letter && nameValue === 'letter') {
+      setSelectValue(filter.letter);
+    } else {
+      setSelectValue('Класс');
+    }
+
+    if (matchedFilter && nameValue !== 'letter') {
+      setSelectValue(filterToSelectValueMap[matchedFilter]);
+    }
+
+    if (registerClassName && nameValue === 'economic') {
+      setSelectValue('Сфера деятельности');
+    }
+  }, []);
+
 
   const handleKeyDown = (e) => {
     if (e.code === 'Enter' || e.code === 'Space') {
@@ -47,7 +76,7 @@ const Select = ({ field,
       onKeyDown={handleKeyDown}
     >
       <div className="select-wrapper">
-        <span className="select-label">{selectValue}</span>
+        <span className="select-label">{registerData && registerData !== '' ? registerData : selectValue}</span>
         <Arrow />
       </div>
       {isSuccess && <PopUp
@@ -72,6 +101,7 @@ Select.propTypes = {
   isDefault: PropTypes.bool,
   onFieldClick: PropTypes.func,
   registerClassName: PropTypes.bool,
+  registerData: PropTypes.string,
 };
 
 

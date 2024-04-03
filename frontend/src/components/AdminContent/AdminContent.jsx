@@ -3,7 +3,7 @@ import AdminUser from '../AdminUser/AdminUser';
 import './index.css';
 
 
-const AdminContent = ({ data, onDelete }) => {
+const AdminContent = ({ data, onDelete, isLoading }) => {
   return (
     <table className="admin-content">
       <thead className="admin-content-top">
@@ -18,6 +18,7 @@ const AdminContent = ({ data, onDelete }) => {
           key={elem._id}
           user={elem}
           onDeleteUser={() => onDelete(elem._id)}
+          isLoading={isLoading}
         />)}
       </tbody>
     </table>
@@ -28,6 +29,7 @@ const AdminContent = ({ data, onDelete }) => {
 AdminContent.propTypes = {
   data: PropTypes.array,
   onDelete: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 

@@ -5,10 +5,12 @@ const keyMap = {
   year: 'Год выпуска:',
   letter: 'Класс:',
   email: 'Электронная почта:',
+  phone: 'Номер телефона:',
   social: 'Социальная сеть:',
   almaMater: 'Место учебы:',
   position: 'Должность:',
   workplace: 'Место работы:',
+  economic: 'Сфера деятельности:',
   success: 'Что для Вас успех?',
   isSuccess: 'Считаете ли Вы себя успешным человеком?',
   achievement: 'Перечислите три своих главных достижения в жизни',
@@ -25,9 +27,11 @@ const ContentList = ({ objectKey, value, bottom = false }) => {
       <dt className={`content-term ${bottom ? 'content-term-additional' : ''}`}>{keyMap[objectKey]}</dt>
       <dd className={`content-definition ${bottom ? 'content-definition-additional' : ''}`}>
         {objectKey === 'email' ? (
-          <a className='user-card-link' href={`mailto:${value}`}>{value}</a>
+          <a className="user-card-link" href={`mailto:${value}`}>{value}</a>
         ) : objectKey === 'social' ? (
-          <a className='user-card-link' href={value} target='_blank' rel="noreferrer noopener">{value}</a>
+          <a className="user-card-link" href={value} target="_blank" rel="noreferrer noopener">{value}</a>
+        ) : objectKey === 'phone' ? (
+          <a className="user-card-link" href={`tel:${value.replace(/[\s-]/g, '')}`}>{value}</a>
         ) : (
           value
         )}

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import './index.css';
 
 
-const AdminUser = ({ user, onDeleteUser }) => {
+const AdminUser = ({ user, onDeleteUser, isLoading }) => {
   return (
     <tr className="admin-user">
       <td>
@@ -34,7 +34,7 @@ const AdminUser = ({ user, onDeleteUser }) => {
       <td>
         <div className="admit-edit">
           <Link className="admin-edit-button" to={`/admin-panel/edit/${user._id}`} aria-label="Редактировать выпускника"></Link>
-          <button onClick={onDeleteUser} className="admin-edit-button" aria-label="Удалить выпускника из базы"></button>
+          <button disabled={isLoading} onClick={onDeleteUser} className="admin-edit-button" aria-label="Удалить выпускника из базы"></button>
         </div>
       </td>
     </tr>

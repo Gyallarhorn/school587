@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const validateData = (data, validator) => {
   return Object
     .keys(validator)
@@ -19,4 +21,26 @@ const findInvalidData = (data, validator) => {
     .filter((key) => !validator[key].test(data[key]));
 };
 
-export { validateData, validateYear, findInvalidData };
+const validateForm = (data, validator, errors) => {
+  const isValid = validateData(data, validator);
+  const isValidYear = validateYear(data.year);
+
+  if (!isValidYear) {
+    toast.error('Пожалуйста введите корректный год выпуска');
+    return false;
+  }
+
+  if (!isValid) {
+    const invalidData = findInvalidData(data, validator);
+    invalidData.forEach((elem) => toast.error(errors[elem]));
+    return false;
+  }
+
+  if (data.letter === 'Класс') {
+    toast.error('Пожалуйста выберите класс');
+    return false;
+  }
+  return true;
+};
+
+export { validateData, validateYear, findInvalidData, validateForm };
