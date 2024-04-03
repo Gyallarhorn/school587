@@ -1,0 +1,129 @@
+.admin-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 60px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 30px;
+}
+
+.admin-navigation-left {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.admin-navigation-link {
+  position: relative;
+  min-width: 98px;
+  padding: 9px 14px;
+  color: var(--primary-text-color);
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: background-color 0.5s ease;
+
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--admin-link-background);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &.active {
+    background-color: var(--admin-link-background);
+  }
+}
+
+.admin-new-link {
+  min-width: auto;
+}
+
+.admin-moderation-link {
+  padding: 9px 14px 9px 29px;
+
+  &::after {
+    position: absolute;
+    top: 11px;
+    left: 14px;
+    width: 10px;
+    height: 10px;
+    content: '';
+    background-color: var(--border-color);
+    border-radius: 50%;
+  }
+}
+
+.admin-edit-link {
+  color: var(--input-text-color);
+  text-decoration: underline;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+@media (width >=768px) {
+  .admin-navigation {
+    margin: 0 0 25px;
+  }
+
+  .admin-navigation-left {
+    gap: 12px;
+  }
+
+  .admin-moderation-link {
+    &::after {
+      display: none;
+    }
+  }
+
+  .admin-navigation-link {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 14px;
+    border-radius: 16px;
+
+
+    &::before {
+      padding: 1px 4px;
+      text-align: center;
+      content: attr(data-count);
+      background-color: var(--border-color);
+      border-radius: 4px;
+    }
+  }
+}
+
+@media (width >=1280px) {
+  .admin-navigation {
+    margin: 0 0 40px;
+  }
+
+  .admin-navigation-left {
+    gap: 30px;
+  }
+
+  .admin-navigation-link {
+    gap: 10px;
+    padding: 14px;
+    border-radius: 20px;
+
+
+    &::before {
+      padding: 2px 7px;
+      text-align: center;
+      border-radius: 5px;
+    }
+  }
+}

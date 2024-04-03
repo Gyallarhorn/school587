@@ -1,0 +1,161 @@
+.admin-user {
+  & td {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  &:first-child td {
+    padding: 0 0 20px;
+  }
+
+  & td:nth-child(3) {
+    display: none;
+  }
+
+  & td:first-child {
+    width: 61px;
+  }
+}
+
+.admin-user-link {
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: 0 15px 0 0;
+  overflow: hidden;
+  background-color: var(--plug-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+}
+
+.admin-image-container {
+  display: block;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  & img {
+    width: auto;
+    height: 40px;
+    object-fit: contain;
+  }
+}
+
+.admin-user-name {
+  margin: 0 10px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admit-edit {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.admin-edit-button {
+  width: 30px;
+  height: 30px;
+  background: url('/img/edit.svg') center no-repeat;
+  background-size: cover;
+  transition: opacity 0.5s ease;
+
+  &:last-child {
+    background-image: url('/img/delete.svg');
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+}
+
+@media (width >=768px) {
+  .admin-user {
+    & td,
+    &:first-child td {
+      padding: 16px 0;
+    }
+
+    & td:nth-child(3) {
+      display: table-cell;
+    }
+
+    & td:first-child {
+      width: 80px;
+    }
+  }
+
+  .admin-user-link {
+    width: 58px;
+    height: 58px;
+    margin: 0 20px 0 0;
+  }
+
+  .admin-image-container img {
+    height: 54px;
+  }
+
+  .admin-user-name {
+    margin: 0 15px 0 0;
+    font-size: 16px;
+  }
+
+  .admin-user-date {
+    font-size: 16px;
+    color: var(--input-text-color);
+  }
+
+  .admit-edit {
+    gap: 25px;
+  }
+
+  .admin-edit-button {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (width >=1280px) {
+  .admin-user {
+    & td,
+    &:first-child td {
+      padding: 25px 0;
+    }
+
+    & td:first-child {
+      width: 80px;
+    }
+  }
+
+  .admin-user-link {
+    width: 77px;
+    height: 77px;
+    margin: 0 33px 0 0;
+  }
+
+  .admin-image-container img {
+    height: 66px;
+  }
+
+  .admin-user-name {
+    margin: 0 20px 0 0;
+    font-size: 20px;
+  }
+
+  .admin-user-date {
+    font-size: 20px;
+  }
+
+  .admit-edit {
+    gap: 58px;
+  }
+
+  .admin-edit-button {
+    width: 40px;
+    height: 40px;
+  }
+}

@@ -16,7 +16,7 @@ const usersSlice = apiSlice.injectEndpoints({
 
     uploadImage: builder.mutation({
       query: (formData) => ({
-        url: `${import.meta.env.VITE_UPLOADS_URL }`,
+        url: `${import.meta.env.VITE_UPLOADS_URL}`,
         method: 'POST',
         body: formData,
       }),

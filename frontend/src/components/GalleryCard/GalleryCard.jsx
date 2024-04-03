@@ -21,7 +21,7 @@ const GalleryCard = ({ user }) => {
           </picture>
         )}
       <figcaption className="figcaption">
-        <Link className="user-link" to={`users/${user._id}`}>{user.name}</Link>
+        <Link className="user-link" to={`users/${user._id}`}>{user.fullName}</Link>
       </figcaption>
     </figure >
   );

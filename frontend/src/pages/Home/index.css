@@ -3,22 +3,14 @@
   font-family: 'Coolvetica Rg', Helvetica, sans-serif;
   font-size: 25px;
   font-weight: 400;
-}
 
-.someclass {
-  margin: 0;
-}
-
-@media (width >=768px) {
-  .main-header {
+  @media (width >=768px) {
     margin: 0 0 35px;
-    font-size: 35px;
+    font-size: 35px
   }
-}
 
-@media (width >=1280px) {
-  .main-header {
+  @media (width >=1280px) {
     margin: 0 0 50px;
-    font-size: 50px;
+    font-size: 50px
   }
 }

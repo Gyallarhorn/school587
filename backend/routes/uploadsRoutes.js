@@ -2,17 +2,12 @@ import path from 'path';
 import multer from 'multer';
 import express from 'express';
 import sharp from 'sharp';
+import { promises as fsPromises } from 'fs';
+import authenticateAdmin from '../middlewares/authenticate.js';
+
+const dirname = path.resolve();
 
 const router = express.Router();
-
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'uploads/');
-//   },
-//   // filename: (req, file, cb) => {
-//   //   cb(null, `image-${Date.now()}.webp`);
-//   // },
-// });
 
 const storage = multer.memoryStorage();
 
@@ -47,18 +42,12 @@ router.post('/', uploadSingleImage, async (req, res) => {
       return res.status(400).json({ message: 'Фото не должно весить больше 50мб' });
     }
 
-    // const imagePath = req.file.path;
-    // console.log(imagePath);
-
     const newPath = `image-${Date.now()}.webp`;
 
     if (req.file.mimetype !== 'image/webp') {
       await sharp(req.file.buffer)
         .webp({ quality: 85 })
         .toFile(`uploads/${newPath}`);
-
-      // const webpBuffer = await sharp(req.file.buffer).webp({ quality: 85 }).toBuffer();
-      // await sharp(webpBuffer).toFile(`uploads/${newPath}`);
     } else {
       await sharp(req.file.buffer).toFile(`uploads/${newPath}`);
     }
@@ -68,5 +57,20 @@ router.post('/', uploadSingleImage, async (req, res) => {
     return res.status(500).json({ message: 'Возникла ошибка в загрузке файла. Попробуйте позднее' });
   }
 });
+
+const deletePhoto = async (req, res) => {
+  try {
+    if (!req.body.photo) {
+      return res.status(400).json({ message: 'Фотография не найдена' });
+    }
+    await fsPromises.unlink(path.join(dirname, req.body.photo));
+    return res.status(200).json({ message: 'Фотография успешно удалена' });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Произошла ошибка, попробуйте позднее' });
+  }
+};
+
+router.delete('/delete', authenticateAdmin, deletePhoto);
 
 export default router;

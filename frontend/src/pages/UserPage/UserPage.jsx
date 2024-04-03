@@ -1,5 +1,4 @@
 import { useParams } from "react-router";
-import { useGetSpecificUserQuery } from "../../redux/api/users";
 import { Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import plugMobile from '../../assets/plug_mobile.webp';
@@ -9,14 +8,16 @@ import './index.css';
 import ContentList from "../../components/ContentList/ContentList";
 import { mainContentKeys, additioanlContentKeys } from "../../utils/constants";
 import { toast } from "react-toastify";
+import PropTypes from 'prop-types';
+import useUserData from "../../hooks/useUserData";
 
-const UserPage = () => {
+const UserPage = ({ isAdmin }) => {
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
   });
   const { id } = useParams();
-  const { data, isLoading, isError, isSuccess } = useGetSpecificUserQuery(id);
+  const { data, isLoading, isError, isSuccess } = useUserData(isAdmin, id);
 
   if (isError) {
     toast.error('Пользователь не найден');
@@ -32,17 +33,17 @@ const UserPage = () => {
             <div className="image-wrapper">
               {data?.photo
                 ? (
-                  <img className="user-image avatar-image" src={`http://localhost:3000${data.photo}`} alt={`${data.name}`} />
+                  <img className="user-image" src={`http://localhost:3000${data.photo}`} alt={`${data.lastName}`} />
                 )
                 : (
                   <picture className="image-container avatar-container">
                     <source media="(min-width: 1280px)" srcSet={plugDekstop} />
                     <source media="(min-width: 768px)" srcSet={plugTablet} />
-                    <img className="userimager" src={plugMobile} alt={`${data.name}`} />
+                    <img className="user-image" src={plugMobile} alt={`${data.lastName}`} />
                   </picture>
                 )}
             </div>
-            <h1 className="user-title">{data.name}</h1>
+            <h1 className="user-title">{data.fullName}</h1>
             <dl className="main-content-list">
               {mainContentKeys.map((key, index) => {
                 if (data[key]) {
@@ -63,5 +64,12 @@ const UserPage = () => {
     </section>
   );
 };
+
+
+UserPage.propTypes = {
+  isAdmin: PropTypes.bool.isRequired,
+};
+
+
 
 export default UserPage;

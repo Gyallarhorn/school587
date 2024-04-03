@@ -9,7 +9,8 @@ import universityRoutes from './routes/universityRoutes.js';
 import activitityRoutes from './routes/activityRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import UploadsRoutes from './routes/uploadsRoutes.js';
-// import { initEcomonics, initUniversities, initUsers } from './mockData/initiate.js';
+import AdminRoutes from './routes/adminRoutes.js';
+import { initEcomonics, initUniversities, initUsers } from './mockData/initiate.js';
 // import createFolder from './utils/createFolder.js';
 
 // Configuration
@@ -22,8 +23,8 @@ const UPLOADS_PATH = path.join(dirname, UPLOADS_FOLDER);
 
 // Mock data and uploads folder
 
-// initUniversities();
 // createFolder(UPLOADS_PATH);
+// initUniversities();
 // initUsers();
 // initEcomonics();
 
@@ -40,6 +41,7 @@ app.use('/api/v1/universities', universityRoutes);
 app.use('/api/v1/activities', activitityRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/uploads', UploadsRoutes);
+app.use('/api/v1/admin', AdminRoutes);
 
 app.use(`/${UPLOADS_FOLDER}`, express.static(UPLOADS_PATH));
 

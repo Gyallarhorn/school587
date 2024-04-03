@@ -1,0 +1,10 @@
+.admin-panel {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto;
+  margin: 0 0 20px;
+
+  @media (width >=768px) {
+    margin: 0
+  }
+}

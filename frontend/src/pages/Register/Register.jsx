@@ -13,9 +13,9 @@ import { useCreateUserMutation, useUploadImageMutation } from '../../redux/api/u
 
 const Register = () => {
   const [info, setInfo] = useState({
-    forename: '',
-    surname: '',
-    patronymic: '',
+    firstName: '',
+    lastName: '',
+    middleName: '',
     year: '',
     letter: '',
     phone: '',
@@ -169,9 +169,9 @@ const Register = () => {
       });
 
       setInfo({
-        forename: '',
-        surname: '',
-        patronymic: '',
+        firstName: '',
+        lastName: '',
+        middleName: '',
         year: '',
         letter: '',
         phone: '',
@@ -212,40 +212,40 @@ const Register = () => {
         <h2 className="form-title">персональная информация</h2>
         <fieldset className="personal-info fieldset">
           <div className="form-wrapper">
-            <label htmlFor="surname" className="input-label">Фамилия *</label>
+            <label htmlFor="lastName" className="input-label">Фамилия *</label>
             <input
               className="input register-input"
               type="text"
               placeholder="Иванов"
-              id="surname"
-              name="surname"
+              id="lastName"
+              name="lastName"
               required={true}
-              value={info.surname}
+              value={info.lastName}
               onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="form-wrapper">
-            <label htmlFor="forename" className="input-label">Имя *</label>
+            <label htmlFor="firstName" className="input-label">Имя *</label>
             <input
               className="input register-input"
               type="text"
               placeholder="Иван"
-              id="forename"
-              name="forename"
+              id="firstName"
+              name="firstName"
               required={true}
-              value={info.forename}
+              value={info.firstName}
               onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="form-wrapper">
-            <label htmlFor="patronymic" className="input-label">Отчество</label>
+            <label htmlFor="middleName" className="input-label">Отчество</label>
             <input
               className="input register-input"
               type="text"
               placeholder="Иванович"
-              id="patronymic"
-              name="patronymic"
-              value={info.patronymic}
+              id="middleName"
+              name="middleName"
+              value={info.middleName}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -480,7 +480,7 @@ const Register = () => {
         <button
           type="submit"
           className="submit-button"
-          disabled={!info.forename || !info.surname || !info.year || !info.phone || !info.email || isCreatingUser || isUploadingImage}
+          disabled={!info.firstName || !info.lastName || !info.year || !info.phone || !info.email || isCreatingUser || isUploadingImage}
         >
           Отправить
         </button>
