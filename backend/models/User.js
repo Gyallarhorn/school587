@@ -27,7 +27,6 @@ const userSchema = mongoose.Schema({
   letter: {
     type: String,
     required: true,
-    trim: true,
   },
   phone: {
     type: String,
@@ -51,7 +50,7 @@ const userSchema = mongoose.Schema({
   },
   economic: {
     type: String,
-    trim: true,
+    required: true,
   },
   position: {
     type: String,
