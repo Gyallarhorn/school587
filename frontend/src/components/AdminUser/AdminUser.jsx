@@ -14,7 +14,7 @@ const AdminUser = ({ user, onDeleteUser, isLoading }) => {
         <Link to={`${user._id}`} className="admin-user-link" aria-label={`Переход на карточку выпускника`}>
           {user?.photo
             ? (
-              <img className="user-image" src={`http://localhost:3000${user.photo}`} alt={`${user.lastName}`} />
+              <img className="user-image" src={`${import.meta.env.VITE_BASE_URL}${user.photo}`} alt={`${user.lastName}`} />
             )
             : (
               <picture className="admin-image-container">

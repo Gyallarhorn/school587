@@ -32,7 +32,20 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
-app.use(cors());
+
+const whitelist = ['http://80.90.184.234:3050/'];
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
@@ -44,8 +57,13 @@ app.use('/api/v1/uploads', UploadsRoutes);
 app.use('/api/v1/admin', AdminRoutes);
 
 app.use(`/${UPLOADS_FOLDER}`, express.static(UPLOADS_PATH));
+app.use(express.static(path.join(dirname, 'dist')));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3050;
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(dirname, 'dist', 'index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
