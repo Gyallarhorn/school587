@@ -45,6 +45,7 @@ const AdminUser = ({ user, onDeleteUser, isLoading }) => {
 AdminUser.propTypes = {
   user: PropTypes.object.isRequired,
   onDeleteUser: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 

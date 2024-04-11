@@ -48,7 +48,7 @@ const UpdateUser = () => {
 
   const { data: existingUser, refetch } = useUserData(true, id);
   const { data: economic, isSuccess: isSuccessEconomic, isError: isEconomicError } = useFetchEcomonicActivitiesQuery();
-  const { data: universities, isSuccess: isSuccessUniversities } = useDelayedApiQuery(info.almaMater, 500);
+  const { data: universities, isSuccess: isSuccessUniversities } = useDelayedApiQuery({ university: info.almaMater }, 500);
 
   useEffect(() => {
     window.scrollTo({
@@ -58,7 +58,6 @@ const UpdateUser = () => {
   }, []);
 
   useEffect(() => {
-
     if (existingUser) {
       const { createdAt, isChecked, updatedAt, workplace, _id, fullName, __v, ...mainData } = existingUser;
 

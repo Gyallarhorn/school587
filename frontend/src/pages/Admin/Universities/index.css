@@ -1,0 +1,18 @@
+.universities {
+  position: relative;
+  display: grid;
+  grid-template-rows: repeat(3, min-content);
+  margin: 0 0 20px;
+}
+
+.universities-no-content {
+  min-height: calc(100dvh - 75px);
+
+  @media (width >=768px) {
+    min-height: calc(100dvh - 114px);
+  }
+
+  @media (width >=1280px) {
+    min-height: calc(100dvh - 187px);
+  }
+}

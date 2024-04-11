@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   grid-column: 1/ -1;
-  gap: 14px;
+  gap: 10px;
   justify-content: space-between;
   justify-self: center;
   padding: 8px 16px;

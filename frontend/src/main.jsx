@@ -11,6 +11,7 @@ import AdminRoutes from './pages/Admin/AdminRoutes.jsx';
 import PanelChecked from './pages/Admin/PanelChecked/PanelChecked.jsx';
 import PanelNew from './pages/Admin/PanelNew/PanelNew.jsx';
 import UpdateUser from './pages/Admin/UpdateUser/UpdateUser.jsx';
+import Universitites from './pages/Admin/Universities/Universitites.jsx';
 
 
 const router = createBrowserRouter(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
         <Route path="/admin-panel/new-users" element={<PanelNew />} />
         <Route path="/admin-panel/new-users/:id" element={<UserPage isAdmin={true} />} />
         <Route path="/admin-panel/edit/:id" element={<UpdateUser />} />
+        <Route path="/admin-panel/universities" element={<Universitites />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Route>,

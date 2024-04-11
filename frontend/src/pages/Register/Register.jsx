@@ -41,7 +41,7 @@ const Register = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const { data: economic, isSuccess: isSuccessEconomic, isError: isEconomicError } = useFetchEcomonicActivitiesQuery();
-  const { data: universities, isSuccess: isSuccessUniversities } = useDelayedApiQuery(info.almaMater, 500);
+  const { data: universities, isSuccess: isSuccessUniversities } = useDelayedApiQuery({ university: info.almaMater }, 500);
 
   const [createUser, { isLoading: isCreatingUser }] = useCreateUserMutation();
   const [uploadImage, { isLoading: isUploadingImage }] = useUploadImageMutation();

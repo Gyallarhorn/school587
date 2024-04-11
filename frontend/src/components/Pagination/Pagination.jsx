@@ -73,7 +73,6 @@ Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
   siblingCount: PropTypes.number.isRequired,
-
 };
 
 

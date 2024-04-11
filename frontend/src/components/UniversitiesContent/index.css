@@ -1,0 +1,15 @@
+.admin-user .table-name-data:first-child {
+  width: auto;
+}
+
+.table-edit-data {
+  width: 66px;
+
+  @media (width >=768px) {
+    width: 175px;
+  }
+
+  @media (width >=1280px) {
+    width: 225px;
+  }
+}

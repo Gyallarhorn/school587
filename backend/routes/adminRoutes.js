@@ -10,7 +10,9 @@ import {
   updateUser,
 } from '../controllers/userController.js';
 import authenticateAdmin from '../middlewares/authenticate.js';
-import { createUniversity, deleteUniversity, updateUniversity } from '../controllers/universityContoller.js';
+import {
+  countUniversities, createUniversity, deleteUniversity, updateUniversity,
+} from '../controllers/universityContoller.js';
 
 const router = express.Router();
 
@@ -25,6 +27,7 @@ router.get('/specific-user/:id', authenticateAdmin, getUserByAdmin);
 router.put('/update-user/:id', authenticateAdmin, updateUser);
 router.delete('/delete-user/:id', authenticateAdmin, deleteUser);
 
+router.get('/count-university', authenticateAdmin, countUniversities);
 router.post('/create-university', authenticateAdmin, createUniversity);
 router.put('/update-university/:id', authenticateAdmin, updateUniversity);
 router.delete('/delete-university/:id', authenticateAdmin, deleteUniversity);

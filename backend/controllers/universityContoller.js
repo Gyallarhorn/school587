@@ -5,14 +5,27 @@ const LIMIT = 20;
 
 const getAllUniversities = async (req, res) => {
   try {
+    const page = +req.query.page - 1 || 0;
     const name = req.query.university || '';
     const universities = await University
       .find({ name: { $regex: name, $options: 'i' } })
+      .sort({ name: 1 })
+      .skip(LIMIT * page)
       .limit(LIMIT);
 
     res.json(universities);
   } catch (error) {
     res.status(500).json({ message: 'Не удалось получить учебные заведения' });
+  }
+};
+
+const countUniversities = async (req, res) => {
+  try {
+    const count = await University.countDocuments({});
+
+    res.json(count);
+  } catch (error) {
+    res.status(500).json({ message: 'Не удалось посчитать количество учебных заведений' });
   }
 };
 
@@ -90,4 +103,5 @@ export {
   createUniversity,
   updateUniversity,
   deleteUniversity,
+  countUniversities,
 };
