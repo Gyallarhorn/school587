@@ -42,7 +42,7 @@ const UniversitiesContent = ({ data, onDelete, isLoading, onHandlePopup }) => {
           ))}
         </tbody>
       </table>
-      {data.universities.length > 20 &&
+      {data?.count > 20 &&
         <Pagination
           totalCount={data.count}
           currentPage={data.page}

@@ -50,7 +50,7 @@ const Pagination = ({ totalCount, currentPage, pageSize, siblingCount = 1 }) => 
       onClick={(e) => handlePagination(e)}
     >
       <li className="pagination-item">
-        <button className="arrow left" disabled={currentPage === 1}></button>
+        <button className="arrow left" disabled={currentPage === 1} aria-label="Вернуться на предыдущую страницу"></button>
       </li>
       {paginationRange.map((elem, id) => {
         if (elem === DOTS) {
@@ -63,7 +63,7 @@ const Pagination = ({ totalCount, currentPage, pageSize, siblingCount = 1 }) => 
         );
       })}
       <li className="pagination-item">
-        <button className="arrow right" disabled={currentPage === lastPage}></button>
+        <button className="arrow right" disabled={currentPage === lastPage} aria-label="Перейти на следующую страницу"></button>
       </li>
     </ul>
   );

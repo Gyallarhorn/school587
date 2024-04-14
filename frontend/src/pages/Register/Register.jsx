@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import useDelayedApiQuery from '../../hooks/useDelayedApiQuery';
 import PopUp from '../../components/PopUp/PopUp';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
-import { validateYear, validateData, findInvalidData, validateForm } from '../../utils/validator';
+import { validateForm } from '../../utils/validator';
 import { useCreateUserMutation, useUploadImageMutation } from '../../redux/api/users';
 
 const Register = () => {

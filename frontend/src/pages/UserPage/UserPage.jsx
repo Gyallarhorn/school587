@@ -26,8 +26,8 @@ const UserPage = ({ isAdmin }) => {
   return (
     <section className={`user ${isLoading || isError ? 'user-no-content' : ''}`}>
       <Link className="back-button" to="/">Назад</Link>
-      {isLoading || isError && <Loader />}
-      {isSuccess && (
+      {isLoading || isError || !isSuccess && <Loader />}
+      {!isLoading && !isError && isSuccess && (
         <>
           <div className="main-content">
             <div className="image-wrapper">

@@ -32,7 +32,7 @@ const Footer = () => {
         </div>
         <div className="footer-wrapper creators">
           <h3 className="footer-title">Создали:</h3>
-          <a className="footer-link creator-link">Разработка: Undefined</a>
+          <a className="footer-link creator-link" href="#">Разработка: Undefined</a>
           <a className="footer-link creator-link" href="https://t.me/gergilv" target="_blank" rel="noreferrer noopener">Дизайн: Гергиль Вероника</a>
         </div>
         <p className="copyright">&copy;&nbsp;Выпускники Гимназии 587 Фрунзенского района Санкт-Петербурга. Все права защищены.</p>

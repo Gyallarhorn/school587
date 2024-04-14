@@ -104,14 +104,19 @@
   transition: background-color 0.5s ease,
     color 0.5s ease;
 
-  &:hover,
-  &:focus-visible {
-    color: var(--primary-text-color);
-    background-color: transparent
-  }
-
   &:focus {
     outline: none;
+  }
+
+  &[disabled] {
+    color: var(--opacity-background);
+    pointer-events: none
+  }
+
+  &:hover:not([disabled]),
+  &:focus-visible:not([disabled]) {
+    color: var(--primary-text-color);
+    background-color: transparent
   }
 }
 
