@@ -7,7 +7,7 @@ import './index.css';
 const Home = () => {
   return (
     <>
-      <h1 className="main-header">Выпускники школы</h1>
+      <h1 className="main-header">Выпускники гимназии</h1>
       <Filter />
       <Gallery />
     </>

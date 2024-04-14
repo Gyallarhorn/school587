@@ -19,7 +19,7 @@ const AdminNavigation = ({ countNew, countAll }) => {
           data-count={countNew?.total || 0}
           className={`admin-navigation-link ${countNew?.total > 0 ? 'admin-moderation-link admin-new-link' : ''}`}>На модерации</NavLink>
       </div >
-      <NavLink to="admin-panel/edit-universities" className="admin-edit-link">Редактировать ВУЗы</NavLink>
+      <NavLink to="/admin-panel/universities" className="admin-edit-link">Редактировать ВУЗы</NavLink>
     </div >
   );
 };

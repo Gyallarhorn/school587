@@ -26,6 +26,10 @@
   }
 }
 
+.loader-universities {
+  top: 175px;
+}
+
 @keyframes animloader {
   0% {
     opacity: 1;
@@ -52,10 +56,18 @@
       border: 3px solid var(--border-color);
     }
   }
+
+  .loader-universities {
+    top: 163px;
+  }
 }
 
-@media (width >=768px) {
+@media (width >=1280px) {
   .loader {
     top: 60px;
+  }
+
+  .loader-universities {
+    top: 225px;
   }
 }

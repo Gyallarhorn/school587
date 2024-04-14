@@ -34,7 +34,7 @@ const Filter = () => {
   const filter = useSelector((state) => state.users.filter);
   const dispatch = useDispatch();
   const { data: activities, isSuccess: isSuccessEconomic, isError } = useFetchEcomonicActivitiesQuery();
-  const { data: universities, isSuccess: isSuccessUniversities } = useDelayedApiQuery(filter.universityValue, 500);
+  const { data: universities, isSuccess: isSuccessUniversities } = useDelayedApiQuery({ university: filter.universityValue }, 500);
 
   if (isError) {
     toast.error('Не удалось получить экономическую деятельность');
@@ -144,7 +144,7 @@ const Filter = () => {
     <form className="form" onSubmit={(e) => handleSubmit(e)}>
       <fieldset
         className={`search-area ${isActive ? 'active' : ''}`}
-        onPointerDown={(e) => handleFieldsetClick(e)}
+        onClick={(e) => handleFieldsetClick(e)}
         onKeyDown={(e) => handleKeyDown(e)}
       >
         <SearchIcon />

@@ -91,6 +91,7 @@ body {
   min-width: 320px;
   min-height: 100%;
   margin: 0;
+  overflow-y: scroll;
   font-family: 'SF UI Display', Arial, sans-serif;
   font-size: 12px;
   font-style: normal;
@@ -98,6 +99,22 @@ body {
   line-height: 1.25;
   color: var(--primary-text-color);
   background-color: var(--background);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) var(--background);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 8px;
+  }
 }
 
 .visually-hidden {
@@ -112,6 +129,7 @@ body {
 
 /* stylelint-disable-next-line selector-class-pattern */
 .Toastify__toast-body {
+  font-family: 'SF UI Display', Arial, sans-serif;
   font-size: clamp(12px, 2.5vw, 16px);
 }
 

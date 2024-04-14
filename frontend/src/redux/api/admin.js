@@ -60,6 +60,35 @@ const adminSlice = apiSlice.injectEndpoints({
         body: updatedUser,
       }),
     }),
+
+    countUniversities: builder.query({
+      query: () => ({
+        url: `${import.meta.env.VITE_ADMIN_URL}/count-university`,
+      }),
+    }),
+
+    updateUniversity: builder.mutation({
+      query: ({ id, updatedUniversity }) => ({
+        url: `${import.meta.env.VITE_ADMIN_URL}/update-university/${id}`,
+        method: 'PUT',
+        body: updatedUniversity,
+      }),
+    }),
+
+    deleteUniversity: builder.mutation({
+      query: (id) => ({
+        url: `${import.meta.env.VITE_ADMIN_URL}/delete-university/${id}`,
+        method: 'DELETE',
+      }),
+    }),
+
+    createUniversity: builder.mutation({
+      query: (data) => ({
+        url: `${import.meta.env.VITE_ADMIN_URL}/create-university`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -73,4 +102,8 @@ export const {
   useGetSpecificUserByAdminQuery,
   useDeleteExistingPhotoMutation,
   useUpdateUserMutation,
+  useCountUniversitiesQuery,
+  useDeleteUniversityMutation,
+  useUpdateUniversityMutation,
+  useCreateUniversityMutation,
 } = adminSlice;

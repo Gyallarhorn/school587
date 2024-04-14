@@ -18,7 +18,7 @@
 }
 
 .register-popup {
-  top: 67px;
+  top: 69px;
 }
 
 .active-popup {
@@ -30,8 +30,8 @@
   padding: 10px 22px 10px 14px;
   margin: 0;
   font-weight: 600;
+  color: var(--primary-text-color);
   text-align: left;
-  cursor: pointer;
   transition: background-color 0.5s ease;
 
   &:hover,

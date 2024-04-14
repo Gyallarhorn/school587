@@ -1,0 +1,176 @@
+.university-popup-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 32px);
+  height: 100%;
+  padding: 0 16px;
+}
+
+.university-popup {
+  position: relative;
+  flex-grow: 1;
+  max-width: 420px;
+  padding: 45px 32px;
+  background-color: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 2px rgb(33 33 38 / 10%);
+  animation: fade-in 0.6s ease 0.1s backwards;
+}
+
+.university-popup-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 15px;
+  height: 15px;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background-color: var(--primary-text-color);
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+.university-popup-label {
+  display: block;
+  margin: 0 0 7px;
+  font-size: 14px;
+}
+
+.add-university-input {
+  display: block;
+  width: calc(100% - 34px);
+  padding: 12px 15px;
+  margin: 0 0 20px;
+  background-color: var(--input-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: background-color 0.5s ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: transparent;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.unviersity-popup-button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  color: var(--background);
+  text-align: center;
+  text-transform: uppercase;
+  background-color: var(--primary-text-color);
+  border: 1px solid var(--primary-text-color);
+  border-radius: 40px;
+  transition: background-color 0.5s ease,
+    color 0.5s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--primary-text-color);
+    background-color: transparent
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+@media (width >=768px) {
+  .university-popup-wrapper {
+    width: calc(100% - 80px);
+    padding: 0 40px;
+  }
+
+  .university-popup {
+    max-width: 560px;
+    padding: 60px 72px 88px;
+    border-radius: 24px;
+  }
+
+  .university-popup-close {
+    top: 35px;
+    right: 35px;
+    width: 20px;
+    height: 20px;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 9px;
+      height: 2px;
+    }
+  }
+
+  .university-popup-label {
+    margin: 0 0 10px;
+    font-size: 16px;
+  }
+
+  .add-university-input {
+    padding: 13px 15px;
+    margin: 0 0 25px;
+  }
+
+  .unviersity-popup-button {
+    padding: 16px;
+    font-size: 14px;
+  }
+}
+
+@media (width >=1280px) {
+  .university-popup-wrapper {
+    width: calc(100% - 120px);
+    padding: 0 60px;
+  }
+
+  .university-popup {
+    max-width: 563px;
+    padding: 70px 95px 97px;
+    border-radius: 30px;
+  }
+
+  .university-popup-close {
+    top: 40px;
+    right: 40px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .university-popup-label {
+    margin: 0 0 12px;
+    font-size: 18px;
+  }
+
+  .add-university-input {
+    max-width: calc(100% - 44px);
+    padding: 16px 20px;
+    margin: 0 0 35px;
+  }
+
+  .unviersity-popup-button {
+    padding: 20px;
+    font-size: 16px;
+  }
+}

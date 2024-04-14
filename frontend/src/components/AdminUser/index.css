@@ -67,7 +67,8 @@
     background-image: url('/img/delete.svg');
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     opacity: 0.5;
   }
 

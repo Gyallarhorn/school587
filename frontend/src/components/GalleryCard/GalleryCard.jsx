@@ -11,7 +11,7 @@ const GalleryCard = ({ user }) => {
     <figure className="figure" tabIndex="0">
       {user?.photo
         ? (
-          <img className="user-image" src={`http://localhost:3000${user.photo}`} alt={`Выпуск ${user.year}, ${user.letter} класс`} />
+          <img className="user-image" src={`${import.meta.env.VITE_BASE_URL}${user.photo}`} alt={`Выпуск ${user.year}, ${user.letter} класс`} />
         )
         : (
           <picture className="image-container">

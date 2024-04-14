@@ -26,14 +26,14 @@ const UserPage = ({ isAdmin }) => {
   return (
     <section className={`user ${isLoading || isError ? 'user-no-content' : ''}`}>
       <Link className="back-button" to="/">Назад</Link>
-      {isLoading || isError && <Loader />}
-      {isSuccess && (
+      {isLoading || isError || !isSuccess && <Loader />}
+      {!isLoading && !isError && isSuccess && (
         <>
           <div className="main-content">
             <div className="image-wrapper">
               {data?.photo
                 ? (
-                  <img className="user-image" src={`http://localhost:3000${data.photo}`} alt={`${data.lastName}`} />
+                  <img className="user-image" src={`${import.meta.env.VITE_BASE_URL}${data.photo}`} alt={`${data.lastName}`} />
                 )
                 : (
                   <picture className="image-container avatar-container">

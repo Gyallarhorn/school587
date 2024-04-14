@@ -133,10 +133,10 @@ const deleteUser = async (req, res) => {
       fsPromises.unlink(path.join(dirname, deletedUser.photo));
     }
 
-    res.json({ message: 'Выпускник успешно удален' });
+    return res.json({ message: 'Выпускник успешно удален' });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Произошла ошибка, попробуйте позднее' });
+    return res.status(500).json({ message: 'Произошла ошибка, попробуйте позднее' });
   }
 };
 

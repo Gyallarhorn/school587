@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   grid-column: 1/ -1;
-  gap: 14px;
+  gap: 10px;
   justify-content: space-between;
   justify-self: center;
   padding: 8px 16px;
@@ -46,15 +46,17 @@
   background-color: var(--background);
 }
 
-.arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+button.arrow {
+  position: relative;
+  width: 22px;
+  height: 22px;
 
   &::before {
-    position: relative;
-    width: 10px;
-    height: 10px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 12px;
+    height: 12px;
     content: '';
     border-top: 2px solid var(--background);
     border-left: 2px solid var(--background);
@@ -76,7 +78,7 @@
   }
 }
 
-.right::before {
+button.right::before {
   transform: rotate(135deg);
 }
 
@@ -92,7 +94,8 @@
     font-size: 14px;
   }
 
-  .arrow::before {
+  button.arrow::before {
+    top: 4px;
     width: 12px;
     height: 12px;
   }
@@ -109,8 +112,14 @@
     font-size: 20px;
   }
 
-  .arrow::before {
-    width: 15px;
-    height: 15px;
+
+  button.arrow {
+    width: 24px;
+    height: 24px;
+
+    &::before {
+      width: 15px;
+      height: 15px;
+    }
   }
 }

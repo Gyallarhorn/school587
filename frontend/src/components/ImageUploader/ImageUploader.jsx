@@ -92,12 +92,7 @@ const ImageUploader = ({ uploadedImage, onImageChange, existingPhoto, onDelete }
           <button
             type="button"
             className="upload-button"
-            onPointerDown={() => inputRef.current.click()}
-            onKeyDown={(e) => {
-              if (e.code === 'Enter' || e.code === 'Space') {
-                inputRef.current.click();
-              }
-            }}
+            onClick={() => inputRef.current.click()}
           >
             <UploadIcon className="upload-icon" />
             <span>Загрузить</span>
@@ -109,7 +104,7 @@ const ImageUploader = ({ uploadedImage, onImageChange, existingPhoto, onDelete }
             <p className="uploader-wrapper-text">Фотография успешно загружена</p>
             {!isOpenModal && (
               <div className="preview-conainer">
-                <img className="preview-image" src={`http://localhost:3000${existingPhoto}`} alt="Загруженная фото" />
+                <img className="preview-image" src={`${import.meta.env.VITE_BASE_URL}${existingPhoto}`} alt="Загруженная фото" />
               </div>
             )}
             <button
@@ -159,12 +154,7 @@ const ImageUploader = ({ uploadedImage, onImageChange, existingPhoto, onDelete }
               <button
                 type="button"
                 className="modal-button upload-button"
-                onPointerDown={(e) => handleImageCrop(e)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === 'Space') {
-                    handleImageCrop(e);
-                  }
-                }}
+                onClick={(e) => handleImageCrop(e)}
                 disabled={isDisabled}
               >
                 Обрезать
@@ -176,7 +166,7 @@ const ImageUploader = ({ uploadedImage, onImageChange, existingPhoto, onDelete }
 
       <label htmlFor="image" className="visually-hidden">Загрузите фотографию</label>
       <input
-        className="input-file"
+        className="input-file visually-hidden"
         ref={inputRef}
         type="file"
         name="image"
