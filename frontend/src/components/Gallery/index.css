@@ -22,12 +22,14 @@
   font-size: 25px;
 }
 
-@media (width >=768px) {
+@media (width >=590px) {
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 20px 16px;
   }
+}
 
+@media (width >=768px) {
   .no-content {
     min-height: calc(100dvh - 267px);
   }
@@ -35,6 +37,13 @@
   .title-error {
     margin: 35px 0;
     font-size: 35px;
+  }
+}
+
+@media (width >=943px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(198px, 1fr));
+    gap: 30px 22px;
   }
 }
 

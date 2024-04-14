@@ -40,6 +40,12 @@ const validateForm = (data, validator, errors) => {
     toast.error('Пожалуйста выберите класс');
     return false;
   }
+
+  if (data.economic === 'Сфера деятельности') {
+    toast.error('Пожалуйста выберите сферу деятельности');
+    return false;
+  }
+
   return true;
 };
 

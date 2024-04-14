@@ -79,8 +79,9 @@
   .footer {
     display: grid;
     grid-template-rows: auto minmax(149px, auto);
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 132px 230px 224px;
     gap: 20px;
+    justify-content: space-between;
     padding: 32px 32px 32px 29px;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
@@ -101,10 +102,6 @@
     grid-area: 2 / 1 / -1 / 2;
   }
 
-  .secretary {
-    grid-area: 1 / 2 / 2 / 3;
-  }
-
   .footer-title {
     margin: 0 0 15px;
     font-size: 14px;
@@ -121,6 +118,10 @@
 
   .deputy-content {
     margin: 8px 0 0;
+  }
+
+  .website {
+    margin: 69px 0 0;
   }
 
   .creators,
@@ -160,8 +161,13 @@
     margin: 10px 0 0;
   }
 
-  .creators,
-  .deputy {
-    margin: 0 0 0 75px;
+  .website {
+    align-self: end;
+    margin: 0;
+  }
+
+  .secretary,
+  .creators {
+    margin: 0 0 0 55px;
   }
 }

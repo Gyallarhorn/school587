@@ -42,10 +42,6 @@
   }
 }
 
-.input-file {
-  display: none;
-}
-
 .modal-container {
   position: fixed;
   top: 0;
@@ -112,6 +108,7 @@
 }
 
 .preview-delete-button {
+  color: var(--primary-text-color);
   text-decoration: underline;
 
   &:hover,

@@ -59,7 +59,7 @@ const UpdateUser = () => {
 
   useEffect(() => {
     if (existingUser) {
-      const { createdAt, isChecked, updatedAt, workplace, _id, fullName, __v, ...mainData } = existingUser;
+      const { createdAt, isChecked, updatedAt, _id, fullName, __v, ...mainData } = existingUser;
 
       if (existingUser?.photo) {
         setExistingPhoto(existingUser.photo);
@@ -128,15 +128,15 @@ const UpdateUser = () => {
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.code === 'Enter' || e.code === 'Space') {
-      handlePopupClick(e);
-    }
+  // const handleKeyDown = (e) => {
+  //   if (e.code === 'Enter' || e.code === 'Space') {
+  //     handlePopupClick(e);
+  //   }
 
-    if (e.code === 'Escape') {
-      setOpen(false);
-    }
-  };
+  //   if (e.code === 'Escape') {
+  //     setOpen(false);
+  //   }
+  // };
 
   const handleChange = (e) => {
     if (e.target.name === 'phone') {
@@ -260,8 +260,8 @@ const UpdateUser = () => {
       <h1 className="main-header form-header">Обновление профиля выпусника</h1>
       <form
         className="register-form"
-        onPointerDown={(e) => handlePopupClick(e)}
-        onKeyDown={(e) => handleKeyDown(e)}
+        onClick={(e) => handlePopupClick(e)}
+        // onKeyDown={(e) => handleKeyDown(e)}
         onSubmit={(e) => handleSubmit(e)}
       >
         <h2 className="form-title">персональная информация</h2>
@@ -420,7 +420,7 @@ const UpdateUser = () => {
             />
           </div>
           <div className="form-wrapper">
-            <span className="input-label">Сфера деятельности</span>
+            <span className="input-label">Сфера деятельности *</span>
             <Select field="Сфера деятельности"
               data={economic}
               isSuccess={isSuccessEconomic}
@@ -541,7 +541,7 @@ const UpdateUser = () => {
           className="submit-button"
           disabled={!info.firstName || !info.lastName || !info.year || !info.phone || !info.email || isLoadingUpdating || isUploadingImage}
         >
-          Отправить
+          Обновить
         </button>
       </form>
     </>

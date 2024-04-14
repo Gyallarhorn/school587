@@ -3,12 +3,20 @@ import usePagination, { DOTS } from '../../hooks/usePagination';
 import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '../../redux/features/users/usersSlice';
+import { useEffect } from 'react';
 
 
 const Pagination = ({ totalCount, currentPage, pageSize, siblingCount = 1 }) => {
   const paginationRange = usePagination(currentPage, totalCount, pageSize, siblingCount);
   const { query } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
 
   const handlePagination = (e) => {
     if (e.target.closest('.right')) {
@@ -29,12 +37,6 @@ const Pagination = ({ totalCount, currentPage, pageSize, siblingCount = 1 }) => 
         page: Number(e.target.textContent),
       }));
     }
-    if (e.target.closest('.pagination-button') || e.target.closest('.left') || e.target.closest('.right')) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
   };
 
   if (currentPage === 0 || paginationRange.length < 2) {
@@ -45,7 +47,7 @@ const Pagination = ({ totalCount, currentPage, pageSize, siblingCount = 1 }) => 
   return (
     <ul
       className="pagination-container"
-      onPointerDown={(e) => handlePagination(e)}
+      onClick={(e) => handlePagination(e)}
     >
       <li className="pagination-item">
         <button className="arrow left" disabled={currentPage === 1}></button>

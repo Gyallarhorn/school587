@@ -23,7 +23,7 @@
   }
 
   & .popup-wrapper {
-    top: 52px;
+    top: 47px;
   }
 }
 
@@ -50,6 +50,7 @@
 
 .button {
   padding: 5px 15px;
+  color: var(--primary-text-color);
   background-color: var(--border-color);
   border: 1px solid var(--border-color);
   border-radius: 18px;

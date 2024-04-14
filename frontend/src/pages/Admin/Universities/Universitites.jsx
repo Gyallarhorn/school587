@@ -15,12 +15,11 @@ const Universitites = () => {
   const { query } = useSelector((state) => state.users);
   const [filterConfig, setFilterConfig] = useState({
     university: '',
-    page: query.page,
   });
   const [isOpen, setOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const { data, isFetching, isError, isSuccess, refetch } = useFetchUniversitiesQuery(filterConfig);
+  const { data, isFetching, isError, isSuccess, refetch } = useFetchUniversitiesQuery({ university: filterConfig.university, page: query.page });
   const { data: countCheckedUsers, isLoading: isLoadingCounting, isError: isErrorCount, isSuccess: isSuccessCount, refetch: refetchCounting } = useCountUniversitiesQuery();
   const [deleteUniversity, { isLoading }] = useDeleteUniversityMutation();
 
@@ -36,11 +35,6 @@ const Universitites = () => {
         ...query,
         page: 1,
       }));
-
-      setFilterConfig((prevValue) => ({
-        ...prevValue,
-        page: 1,
-      }));
     }
 
     return () => {
@@ -51,13 +45,6 @@ const Universitites = () => {
       }));
     };
   }, []);
-
-  useEffect(() => {
-    setFilterConfig((prevValue) => ({
-      ...prevValue,
-      page: query.page,
-    }));
-  }, [query]);
 
   const refetchData = () => {
     refetch();
@@ -94,7 +81,7 @@ const Universitites = () => {
 
   return (
     <section
-      className={`universities ${(isFetching || isLoading || isError || isErrorCount) ? 'universities-no-content' : ''}`.trim()}
+      className={`universities ${(isFetching || isLoading || isError || isErrorCount || !isSuccess || !isSuccessCount ||  !data?.length > 0) ? 'universities-no-content' : ''}`.trim()}
     >
       <h1 className="main-header">База учебных заведений</h1>
       <UniversitiesFilter
@@ -109,7 +96,7 @@ const Universitites = () => {
             {
               universities: data,
               count: countCheckedUsers,
-              page: filterConfig.page,
+              page: query.page,
             }
           }
           isLoading={isLoading}

@@ -58,7 +58,7 @@ const Select = ({ field,
 
   const handleKeyDown = (e) => {
     if (e.code === 'Enter' || e.code === 'Space') {
-      setOpen(!isOpen);
+      setOpen(true);
     } else if (e.code === 'Escape') {
       setOpen(false);
     }
@@ -72,8 +72,8 @@ const Select = ({ field,
   return (
     <div className={`select ${registerClassName ? 'register' : ''}`}
       tabIndex="0"
-      onPointerDown={handleFieldClick}
-      onKeyDown={handleKeyDown}
+      onClick={(e) => handleFieldClick(e)}
+      onKeyDown={(e) => handleKeyDown(e)}
     >
       <div className="select-wrapper">
         <span className="select-label">{registerData && registerData !== '' ? registerData : selectValue}</span>

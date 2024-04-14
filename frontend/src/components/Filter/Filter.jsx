@@ -144,7 +144,7 @@ const Filter = () => {
     <form className="form" onSubmit={(e) => handleSubmit(e)}>
       <fieldset
         className={`search-area ${isActive ? 'active' : ''}`}
-        onPointerDown={(e) => handleFieldsetClick(e)}
+        onClick={(e) => handleFieldsetClick(e)}
         onKeyDown={(e) => handleKeyDown(e)}
       >
         <SearchIcon />

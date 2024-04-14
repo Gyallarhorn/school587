@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import useDelayedApiQuery from '../../hooks/useDelayedApiQuery';
 import PopUp from '../../components/PopUp/PopUp';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
-import { validateYear, validateData, findInvalidData } from '../../utils/validator';
+import { validateYear, validateData, findInvalidData, validateForm } from '../../utils/validator';
 import { useCreateUserMutation, useUploadImageMutation } from '../../redux/api/users';
 
 const Register = () => {
@@ -60,15 +60,15 @@ const Register = () => {
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.code === 'Enter' || e.code === 'Space') {
-      handlePopupClick(e);
-    }
+  // const handleKeyDown = (e) => {
+  //   if (e.code === 'Enter' || e.code === 'Space') {
+  //     handlePopupClick(e);
+  //   }
 
-    if (e.code === 'Escape') {
-      setOpen(false);
-    }
-  };
+  //   if (e.code === 'Escape') {
+  //     setOpen(false);
+  //   }
+  // };
 
   const handleChange = (e) => {
     if (e.target.name === 'phone') {
@@ -113,24 +113,11 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const isValid = validateData(info, inputRegexp);
-    const isValidYear = validateYear(info.year);
-
-    if (!isValidYear) {
-      return toast.error('Пожалуйста введите корректный год выпуска');
-    }
+    const isValid = validateForm(info, inputRegexp, errorText);
 
     if (!isValid) {
-      const invalidData = findInvalidData(info, inputRegexp);
-      invalidData.forEach((elem) => toast.error(errorText[elem]));
       return;
     }
-
-    if (info.letter === 'Класс') {
-      toast.error('Пожалуйста выберите класс');
-      return;
-    }
-
 
     try {
       let uploadedImagePath = null;
@@ -153,9 +140,6 @@ const Register = () => {
         ...info,
         photo: uploadedImagePath,
       });
-
-      console.log(createUserResponse);
-
 
       if (createUserResponse.error) {
         toast.error(createUserResponse.error.data?.message);
@@ -205,8 +189,8 @@ const Register = () => {
       <h1 className="main-header form-header">Регистрация профиля выпусника</h1>
       <form
         className="register-form"
-        onPointerDown={(e) => handlePopupClick(e)}
-        onKeyDown={(e) => handleKeyDown(e)}
+        onClick={(e) => handlePopupClick(e)}
+        // onKeyDown={(e) => handleKeyDown(e)}
         onSubmit={(e) => handleSubmit(e)}
       >
         <h2 className="form-title">персональная информация</h2>
@@ -362,7 +346,7 @@ const Register = () => {
             />
           </div>
           <div className="form-wrapper">
-            <span className="input-label">Сфера деятельности</span>
+            <span className="input-label">Сфера деятельности *</span>
             <Select field="Сфера деятельности"
               data={economic}
               isSuccess={isSuccessEconomic}
@@ -480,7 +464,7 @@ const Register = () => {
         <button
           type="submit"
           className="submit-button"
-          disabled={!info.firstName || !info.lastName || !info.year || !info.phone || !info.email || isCreatingUser || isUploadingImage}
+          disabled={!info.firstName || !info.lastName || !info.year || !info.phone || !info.email || isCreatingUser || isUploadingImage || !info.economic}
         >
           Отправить
         </button>
