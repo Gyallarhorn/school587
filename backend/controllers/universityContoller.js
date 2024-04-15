@@ -21,9 +21,21 @@ const getAllUniversities = async (req, res) => {
 
 const countUniversities = async (req, res) => {
   try {
-    const count = await University.countDocuments({});
-
-    res.json(count);
+    const name = req.query.university || '';
+    const pipeline = [];
+    if (name) {
+      pipeline.push({
+        $match: {
+          name: {
+            $regex: name,
+            $options: 'i',
+          },
+        },
+      });
+    }
+    const countPipeline = [...pipeline, { $count: 'totalUniversities' }];
+    const count = await University.aggregate(countPipeline);
+    res.json(count[0].totalUniversities);
   } catch (error) {
     res.status(500).json({ message: 'Не удалось посчитать количество учебных заведений' });
   }

@@ -157,7 +157,7 @@ const ImageUploader = ({ uploadedImage, onImageChange, existingPhoto, onDelete }
                 onClick={(e) => handleImageCrop(e)}
                 disabled={isDisabled}
               >
-                Обрезать
+                {isDisabled ? 'Загрузка' : 'Обрезать'}
               </button>
             </div>
           </div>

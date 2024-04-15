@@ -42,14 +42,13 @@ const UniversitiesContent = ({ data, onDelete, isLoading, onHandlePopup }) => {
           ))}
         </tbody>
       </table>
-      {data?.count > 20 &&
+      {data?.count &&
         <Pagination
           totalCount={data.count}
           currentPage={data.page}
           pageSize={20}
           siblingCount={1}
-        />
-      }
+        />}
     </>
   );
 };
