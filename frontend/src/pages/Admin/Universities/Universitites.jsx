@@ -20,7 +20,7 @@ const Universitites = () => {
 
   const dispatch = useDispatch();
   const { data, isFetching, isError, isSuccess, refetch } = useFetchUniversitiesQuery({ university: filterConfig.university, page: query.page });
-  const { data: countCheckedUsers, isLoading: isLoadingCounting, isError: isErrorCount, isSuccess: isSuccessCount, refetch: refetchCounting } = useCountUniversitiesQuery();
+  const { data: countCheckedUsers, isLoading: isLoadingCounting, isError: isErrorCount, isSuccess: isSuccessCount, refetch: refetchCounting } = useCountUniversitiesQuery({ university: filterConfig.university });
   const [deleteUniversity, { isLoading }] = useDeleteUniversityMutation();
 
   const [popupData, setPopupData] = useState({

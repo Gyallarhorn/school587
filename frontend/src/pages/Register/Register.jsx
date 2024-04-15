@@ -60,16 +60,6 @@ const Register = () => {
     }
   };
 
-  // const handleKeyDown = (e) => {
-  //   if (e.code === 'Enter' || e.code === 'Space') {
-  //     handlePopupClick(e);
-  //   }
-
-  //   if (e.code === 'Escape') {
-  //     setOpen(false);
-  //   }
-  // };
-
   const handleChange = (e) => {
     if (e.target.name === 'phone') {
       e.target.value = e.target.value.replace(/\D/g, '');
@@ -190,7 +180,6 @@ const Register = () => {
       <form
         className="register-form"
         onClick={(e) => handlePopupClick(e)}
-        // onKeyDown={(e) => handleKeyDown(e)}
         onSubmit={(e) => handleSubmit(e)}
       >
         <h2 className="form-title">персональная информация</h2>
@@ -466,7 +455,7 @@ const Register = () => {
           className="submit-button"
           disabled={!info.firstName || !info.lastName || !info.year || !info.phone || !info.email || isCreatingUser || isUploadingImage || !info.economic}
         >
-          Отправить
+          {isCreatingUser || isUploadingImage ? 'Загрузка' : 'Отправить'}
         </button>
       </form>
     </>

@@ -3,20 +3,31 @@ import usePagination, { DOTS } from '../../hooks/usePagination';
 import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '../../redux/features/users/usersSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const Pagination = ({ totalCount, currentPage, pageSize, siblingCount = 1 }) => {
   const paginationRange = usePagination(currentPage, totalCount, pageSize, siblingCount);
   const { query } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+  const [isScroll, setScroll] = useState(true);
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
+    if (isScroll) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
+      const timeout = setTimeout(() => {
+        setScroll(false);
+      }, 1000);
+
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [isScroll]);
 
   const handlePagination = (e) => {
     if (e.target.closest('.right')) {
@@ -24,18 +35,21 @@ const Pagination = ({ totalCount, currentPage, pageSize, siblingCount = 1 }) => 
         ...query,
         page: currentPage + 1,
       }));
+      setScroll(true);
     }
     if (e.target.closest('.left')) {
       dispatch(setQuery({
         ...query,
         page: currentPage - 1,
       }));
+      setScroll(true);
     }
     if (e.target.closest('.pagination-button')) {
       dispatch(setQuery({
         ...query,
         page: Number(e.target.textContent),
       }));
+      setScroll(true);
     }
   };
 

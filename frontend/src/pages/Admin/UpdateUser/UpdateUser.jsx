@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import useDelayedApiQuery from '../../../hooks/useDelayedApiQuery';
 import { useFetchEcomonicActivitiesQuery } from '../../../redux/api/activities';
-import { findInvalidData, validateData, validateForm, validateYear } from '../../../utils/validator';
+import { validateForm } from '../../../utils/validator';
 import { errorText, inputRegexp, letters } from '../../../utils/constants';
 import { useUploadImageMutation } from '../../../redux/api/users';
 import useUserData from '../../../hooks/useUserData';
@@ -109,7 +109,6 @@ const UpdateUser = () => {
       setExistingPhoto(null);
       toast.success('Фотография успешно удалена');
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   };
@@ -127,16 +126,6 @@ const UpdateUser = () => {
       }));
     }
   };
-
-  // const handleKeyDown = (e) => {
-  //   if (e.code === 'Enter' || e.code === 'Space') {
-  //     handlePopupClick(e);
-  //   }
-
-  //   if (e.code === 'Escape') {
-  //     setOpen(false);
-  //   }
-  // };
 
   const handleChange = (e) => {
     if (e.target.name === 'phone') {
@@ -261,7 +250,6 @@ const UpdateUser = () => {
       <form
         className="register-form"
         onClick={(e) => handlePopupClick(e)}
-        // onKeyDown={(e) => handleKeyDown(e)}
         onSubmit={(e) => handleSubmit(e)}
       >
         <h2 className="form-title">персональная информация</h2>
@@ -541,7 +529,7 @@ const UpdateUser = () => {
           className="submit-button"
           disabled={!info.firstName || !info.lastName || !info.year || !info.phone || !info.email || isLoadingUpdating || isUploadingImage}
         >
-          Обновить
+          {isLoadingUpdating || isUploadingImage ? 'Загрузка' : 'Обновить'}
         </button>
       </form>
     </>

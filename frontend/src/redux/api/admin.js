@@ -62,8 +62,8 @@ const adminSlice = apiSlice.injectEndpoints({
     }),
 
     countUniversities: builder.query({
-      query: () => ({
-        url: `${import.meta.env.VITE_ADMIN_URL}/count-university`,
+      query: (params) => ({
+        url: `${import.meta.env.VITE_ADMIN_URL}/count-university?${new URLSearchParams(params)}`,
       }),
     }),
 
