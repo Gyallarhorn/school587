@@ -2,7 +2,9 @@ import Activity from '../models/EconomicActivity.js';
 
 const getAllActivities = async (req, res) => {
   try {
-    const activities = await Activity.find();
+    const activities = await Activity
+      .find()
+      .sort({ name: 1 });
 
     res.json(activities);
   } catch (error) {

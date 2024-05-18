@@ -1,5 +1,5 @@
 import express from 'express';
-import { createAdmin, loginAdmin } from '../controllers/adminController.js';
+import { loginAdmin } from '../controllers/adminController.js';
 import {
   countCheckedUsers,
   countNewUsers,
@@ -16,7 +16,6 @@ import {
 
 const router = express.Router();
 
-router.post('/', createAdmin);
 router.post('/auth', loginAdmin);
 
 router.get('/get-all-users', authenticateAdmin, getllCheckedUsers);
